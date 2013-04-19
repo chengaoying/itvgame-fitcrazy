@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry sourcepath="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.6.9/source/1f97aa681c2dd1aa0d846af88da444a3b2bfe83a/itvgame-common-1.4.6.9-sources.jar" kind="lib" path="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.6.9/jar/48caf3f32c1f1b33dbad134faa1d8f54d6f7c31/itvgame-common-1.4.6.9.jar" exported="true"/>
+	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/cldcapi11.jar" exported="true"/>
+	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/midpapi20.jar" exported="true"/>
+</classpath>
