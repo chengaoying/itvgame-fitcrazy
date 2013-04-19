@@ -71,10 +71,16 @@ public class UserData {
 	 * 当局游戏的步数
 	 */
 	public static int mStep = 120;
+	
 	/**
 	 * 积分
 	 */
-	public static int mScore=0;
+	public static int mScore = 0;
+	
+	/**
+	 * 上一步的积分
+	 */
+	public static int mScore2 = 0;
 	
 	/**
 	 * 当前所在场景的ID
@@ -223,6 +229,7 @@ public class UserData {
 	}
 
 	public static void addScore(int score) {
+		mScore2 = mScore;
 		mScore += score;
 	}
 	public static void consumptionGold(int gold){

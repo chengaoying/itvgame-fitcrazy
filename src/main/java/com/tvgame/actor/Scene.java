@@ -6,6 +6,7 @@ import javax.microedition.lcdui.Graphics;
 
 import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.key.KeyState;
+import cn.ohyeah.stb.util.RandomValue;
 
 import com.tvgame.constant.Const;
 import com.tvgame.game.Achichment;
@@ -202,14 +203,18 @@ public class Scene {
 		for (int index = 0; index < nodes.length; index++) {
 			if(nodes[index]==null){
 				nodes[index] = new Node(index, this);
+				nodes2[index] = new Node(index, this);
 			}
 			if(data[index]>0){
 				nodes[index].setActor(createNewActor(data[index]));
+				nodes2[index].setActor(createNewActor(data[index]));
 			}else{
 				nodes[index].setActor(null);
+				nodes2[index].setActor(null);
 			}
 		}
-		nodes2 = nodes;
+		//nodes2 = nodes;
+		//nodesToNodes(nodes2, nodes);
 		for (int index = 0; index < nodes.length; index++) {
 			nodes[index].bulidFloor();
 		}
@@ -365,14 +370,18 @@ public class Scene {
 		for (int index = 0; index < nodes.length; index++) {
 			if(nodes[index]==null){
 				nodes[index] = new Node(index, this);
+				nodes2[index] = new Node(index, this);
 			}
 			if(data[index]>0){
 				nodes[index].setActor(createNewActor(data[index]));
+				nodes2[index].setActor(createNewActor(data[index]));
 			}else{
 				nodes[index].setActor(null);
+				nodes2[index].setActor(null);
 			}
 		}
-		nodes2 = nodes;
+		//nodes2 = nodes;
+		//nodesToNodes(nodes2, nodes);
 		for (int index = 0; index < nodes.length; index++) {
 			nodes[index].bulidFloor();
 		}
@@ -507,8 +516,12 @@ public class Scene {
 					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM7)) {
-				nodes = nodes2;
+				//nodes = nodes2;
+				nodesToNodes(nodes, nodes2);
 				curActor = curActor2;
+				UserData.setScore(UserData.mScore2);
+				UserData.setStep(UserData.getStep()+1);
+				ckeckSynthesisImp();
 				
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
 				
@@ -549,32 +562,6 @@ public class Scene {
 		checkFixData();
 	}
 	public byte _ckeckSynthesis(int column, int row, byte actorType,boolean flag) {
-		/*Node node;
-		for (int index = 0; index < totalNodeList.size(); index++) {
-			node = (Node) totalNodeList.elementAt(index);
-			node.setActorStopSynthesis();// 停止动画
-		}
-		totalNodeList.removeAllElements();
-		if (column == 0 && row == 0) {
-			//仓库区不检测
-			return -1;
-		}
-		if(flag&&!getNode(getIndex(column, row)).isNoneSpace()){
-			//非空地不检测
-			return -1;
-		}
-		if(actorType>Actor.TYPE_超级宝箱){
-			//非合体道具不参加检测
-			return -1;
-		}
-		byte type = ckeckSynthesis(column, row,actorType);		
-		System.out.println("check----- "+"列"+column +"行"+row+"类型"+actorType);
-		for (int index = 0; index < totalNodeList.size(); index++) {
-			node = (Node) totalNodeList.elementAt(index);
-			node.setActorReadySynthesis(node.getColumn(),node.getRow(),column,row);// 准备合体现实合体动画
-//			return type;
-		}
-		return type;*/
 		
 		Node node;
 		for (int index = 0; index < totalNodeList.size(); index++) {
@@ -708,7 +695,21 @@ public class Scene {
 	public Node getCurNode(){
 		return nodes[getCurIndex()];
 	}
-	public void setCurNodeActor(Actor actor){
+	
+	private static final int type_null = -1;
+	private static final int type_normal = 0;
+	private static final int type_fit = 1;
+	private static final int type_dinosaur = 2;
+	/**
+	 * 
+	 * @param actor
+	 * @param type 事件类型  0:正常摆放, 1:合体
+	 */
+	public void setCurNodeActor(Actor actor, int type){
+		if(type == type_normal){
+			nodesToNodes(nodes2, nodes);
+			curActor2 = actor;
+		}
 		getCurNode().setActor(actor);
 		getCurNode().setFloorType((byte)0);// 非空地
 		bulidFloor();
@@ -847,7 +848,7 @@ public class Scene {
 //							showBIG_MOFAQIU();
 							break;
 						case Actor.TYPE_飞天猪:
-							setCurNodeActor(curActor);
+							setCurNodeActor(curActor, type_normal);
 							break;
 						case Actor.TYPE_恐龙:
 							do_Logic();
@@ -855,16 +856,18 @@ public class Scene {
 						default:
 							if(totalNodeList.size()>0){
 								//合体
+								nodesToNodes(nodes2, nodes);
 								Node node;
 								for (int index = 0; index < totalNodeList.size(); index++) {
 									node = (Node) totalNodeList.elementAt(index);
+									curActor2 = node.getActor();
 									node.setNullSpace();
 								}
-								setCurNodeActor(createNewActor(synthesisType));
+								setCurNodeActor(createNewActor(synthesisType), type_fit);
 								addScoreWithFit();
 							}else{
 								//正常放置
-								setCurNodeActor(curActor);
+								setCurNodeActor(curActor, type_normal);
 								//判断四个方向是否有恐龙
 //								int _column = getCurNode().getColumn();
 //								int _row  = getCurNode().getRow();
@@ -956,8 +959,8 @@ public class Scene {
 				setFormulaType(getCurrentNodeActorType());
 				showLock();
 			}
-			bulidFloor();
 		}
+		bulidFloor();
 	}
 	public Vector konglongList = new Vector();
 	//飞天猪使用
@@ -1046,7 +1049,7 @@ public class Scene {
 	 */
 	public void doHuoBa_Logic()
 	{
-		setCurNodeActor(createNewActor(Actor.TYPE_16));
+		setCurNodeActor(createNewActor(Actor.TYPE_16),type_normal);
 		Logger.debug("火把变成岩石");
 		check恐龙(getCurNode());
 	}
@@ -1062,11 +1065,11 @@ public class Scene {
 				node = (Node) totalNodeList.elementAt(index);
 				node.setNullSpace();
 			}
-			setCurNodeActor(createNewActor(synthesisType));
+			setCurNodeActor(createNewActor(synthesisType), type_fit);
 		
 			addScoreWithFit();
 		}else{
-			setCurNodeActor(createNewActor(Actor.TYPE_16));
+			setCurNodeActor(createNewActor(Actor.TYPE_16), type_normal);
 			
 			Logger.debug("魔法棒子变成岩石");
 		}	
@@ -1094,7 +1097,7 @@ public class Scene {
 	 */
 	public void do_Logic() {
 		if(hasNoneSpaceWithAround(currentCol, currentRow)&&!hasTypeWithAround(currentCol, currentRow,Actor.TYPE_恐龙)){
-			setCurNodeActor(curActor);
+			setCurNodeActor(curActor,type_normal);
 //			createNewActor();								
 			return ;
 		}
@@ -1103,29 +1106,29 @@ public class Scene {
 			Node node;
 			int column,row;
 			//检查
-			setCurNodeActor(curActor);
+			setCurNodeActor(curActor,type_dinosaur);
 			for (int index = 0; index < totalNodeList.size(); index++) {
 				node = (Node) totalNodeList.elementAt(index);
 				column = node.getColumn();
 				row  = node.getRow();
 				if(hasNoneSpaceWithAround(column, row ))
 				{
-					setCurNodeActor(curActor);
+					setCurNodeActor(curActor,type_dinosaur);
 //					createNewActor();
 					return ;
 				}
 			}
-			setCurNodeActor(null);//测试
+			setCurNodeActor(null,type_null);//测试
 			for (int index = 0; index < totalNodeList.size(); index++) {
 				node = (Node) totalNodeList.elementAt(index);
 				node.setActor(createNewActor(Actor.TYPE_石碑));
 			}
 //				setCurNodeActor(createNewActor(Actor.TYPE_石碑));
 			checkItem(currentCol, currentRow,Actor.TYPE_石碑);
-
+			
 		}else{
 			//正常放置
-			setCurNodeActor(curActor);
+			setCurNodeActor(curActor,type_dinosaur);
 		}
 	}
 	/**
@@ -1151,17 +1154,30 @@ public class Scene {
 	 * 暂存到仓库，如果仓库已经存在的话，把以前的替换出来
 	 */
 	private void actorSaveToStore() {
+		//nodes2 = nodes;
+		nodesToNodes(nodes2, nodes);
 		if (nodes[0].getActorType() == -1) {
 			nodes[0].setActor(curActor);
 			curActor2 = curActor;
-			nodes2 = nodes;
 			createNewActor(false);
 		} else {
 			Actor temp = nodes[0].getActor();
 			nodes[0].setActor(curActor);
 			curActor2 = curActor;
-			nodes2 = nodes;
 			curActor = temp;
+		}
+	}
+	
+	/**
+	 * 将ns2的所有节点赋给ns(不能用ns = ns2)
+	 * @param ns
+	 * @param ns2
+	 */
+	private void nodesToNodes(Node[] ns, Node[] ns2){
+		for(int i=0;i<ns2.length;i++){
+			ns[i].setActor(ns2[i].getActor()); 
+			ns[i].setFloorType(ns2[i].getFloorType());
+			ns[i].setActorStopSynthesis();
 		}
 	}
 
@@ -1274,6 +1290,7 @@ public class Scene {
 	}
 	public void setCurActor(byte actorType){
 		curActor = new Actor(actorType);
+		curActor2 = curActor;
 	}
 	public Actor createNewActor(byte actorType){
 		Logger.debug("createNewActor:" + actorType);
@@ -1423,11 +1440,13 @@ public class Scene {
 	//	每使用1次炸弹，积分加100.
 	//放置获得分数
 	public void addScoreWithPut(){
-		UserData.addScore(Util.getRandom(15,25));
+		//UserData.addScore(Util.getRandom(15,25));
+		UserData.addScore(RandomValue.getRandInt(15, 25));
 	}
 	//合成获得分数
 	public void addScoreWithFit(){
-		UserData.addScore(Util.getRandom(45, 55));
+		//UserData.addScore(Util.getRandom(45, 55));
+		UserData.addScore(RandomValue.getRandInt(45, 55));
 	}
 	//炸弹获得分数
 	public void addScoreWithBomb(){
