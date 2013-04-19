@@ -172,7 +172,7 @@ public class Node {
     	floorType = type;
     }
     /**
-     * 更具当前块的状态更新 地表
+     * 根据当前块的状态更新 地表
      */
     public void bulidFloor(){
         floorType = scene.getCellFloorTypeWithPostion(index%Scene.COLUMNS, index/Scene.COLUMNS);

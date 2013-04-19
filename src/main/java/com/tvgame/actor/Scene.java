@@ -28,15 +28,30 @@ public class Scene {
 	 */
 	public final static int CELL_WIDTH = 55;
 
-	private Node nodes[];
+	private Node nodes[];		//当前nodes
+	
+	private Node nodes2[];		//上一步的nodes
+	
 	/**
-	 * 光标所在的列
+	 * 当前光标所在的列
 	 */
 	private int currentCol;
+	
 	/**
-	 * 光标所在的行
+	 * 上一步光标所在的列
+	 */
+	private int currentCol2;
+	
+	/**
+	 * 当前光标所在的行
 	 */
 	private int currentRow;
+	
+	/**
+	 * 上一步光标所在的行
+	 */
+	private int currentRow2;
+	
 	/**
 	 * 场景所在的位置X
 	 */
@@ -99,12 +114,18 @@ public class Scene {
 	public Node[] getNodes(){
 		return nodes;
 	}
+	
+	public Node[] getNodes2(){
+		return nodes2;
+	}
+	
 	public void initlize() {		
 		
 		if(UserData.isB_show_teach())
 			Game.getInstance().openTeach();
 		
 		nodes = new Node[COLUMNS * ROWS];
+		nodes2 = new Node[COLUMNS * ROWS];
 		Resources.loadImage(Resources.IMG_ID_CELL0);
 		Resources.loadImage(Resources.IMG_ID_SELECTED);
 		Resources.loadImage(Resources.IMG_ID_BUTTON_01);
@@ -188,6 +209,7 @@ public class Scene {
 				nodes[index].setActor(null);
 			}
 		}
+		nodes2 = nodes;
 		for (int index = 0; index < nodes.length; index++) {
 			nodes[index].bulidFloor();
 		}
@@ -350,12 +372,15 @@ public class Scene {
 				nodes[index].setActor(null);
 			}
 		}
+		nodes2 = nodes;
 		for (int index = 0; index < nodes.length; index++) {
 			nodes[index].bulidFloor();
 		}
 		createNewActor(false);
 		currentCol = 0;
+		currentCol2 = 0;
 		currentRow = 0;
+		currentRow2 = 0;
 	}
 
 	/**
@@ -396,173 +421,106 @@ public class Scene {
 	 * 场景更新
 	 */
 	private int dialog_index = 0;
+
 	public void updata(KeyState key) {
-		//-----------------------------去掉人物对话---------------------------------//
-//		if(Dialog.isShowDialog)
-//		{
-//			 if (KeyBoard.isKeyDown(KeyBoard.GMK_SELECT)) {
-//				 if(dialog_index==0)
-//				 { 
-//					 System.out.println("1111111111");
-//					 Dialog.initDialog("阿兰妮","咳咳，我是部落首领，我的部落是最富有的，但我的钻石都吸引不了厉害的人帮我消灭恐龙，保护部落！",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 1)
-//				 { 
-//						 Dialog.initDialog("小班尼","恐龙？我也穿越得太遥远了吧！",Resources.IMG_ID_DIALOG_ROLE);}
-//				 else if(dialog_index == 2)
-//				 { 
-//						 Dialog.initDialog("阿兰妮","我把你召唤来就是请你这种有头脑的人帮我打理我的部落，你现在是我一人之下万人之上了，我授权你管理我的子民,保护我们部落的牧场，当然还有对付可恶的恐龙。当我部落成为非洲最大的部落的时候我就会送你回去，而且你可以带走具有荣誉象征的龙之神币。",Resources.IMG_ID_DIALOG_ROLE2);}
-//				 else if(dialog_index == 3)
-//				 {
-//					 Dialog.initDialog("阿兰妮","还有对付可恶的恐龙。当我部落成为非洲最大的部落的时候我就会送你回去，而且你可以带走具有荣誉象征的龙之神币。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 4)
-//				 { 
-//					 Dialog.initDialog("小班尼","作为班路易女王的后人，我当然要为我们伟大的家族争光，为了我们家族的荣誉，我决定成交!",Resources.IMG_ID_DIALOG_ROLE);
-//				 }	
-//				 else if(dialog_index == 5)
-//				 { 
-//					 Dialog.initDialog("阿兰妮","好的，那我交你如何管理我们的牧场吧。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 6)
-//				 {
-//					 Dialog.initDialog("阿兰妮","每次将屏幕[右上角]刷新出来的物品放到 牧场草地格子中，有[3个]包括[3个以上]的的相同级别的物品连在一起即可引发合体，合体后就会变成更高一级的物品。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 7)
-//				 {
-//					 Dialog.initDialog("阿兰妮","游戏中，你还可以使用[炸弹]摧毁当前你不想要的物品，也可以使用[魔法珠]来交换当前地图上的多个物品的位置。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 8)
-//				 {
-//					 Dialog.initDialog("阿兰妮","[恐龙]常常喜欢在地图上漫步来干扰你，当他们无处可走时候，就会变成[石碑]。另外[飞天猪]会在某个特定阶段出现在游戏地图里，记得你只能用[火把]才能烧死他们。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 9)
-//				 {
-//					 Dialog.initDialog("阿兰妮","另外[飞天猪]会在某个特定阶段出现在游戏地图里，记得你只能用[火把]才能烧死他们。游戏中按下[数字键9]随时进入游戏商城。",Resources.IMG_ID_DIALOG_ROLE2);
-//				 }
-//				 else if(dialog_index == 10)
-//				 {
-//					 Dialog.isShowDialog =false;
-//				 }
-//				 dialog_index++;
-//			}
-//		}
-//		else
 		{
-		// 光标控制		
-		if (/*KeyBoard.isKeyRepeated(KeyBoard.GMK_UP)||*/key.containsAndRemove(KeyCode.UP)) {
-			currentRow = currentRow > 0 ?( currentRow-1) : ROWS - 1;
-			ckeckSynthesisImp();
-		}else if (/*KeyBoard.isKeyRepeated(KeyBoard.GMK_RIGHT)||*/key.containsAndRemove(KeyCode.RIGHT)){
-			currentCol = currentCol < COLUMNS - 1 ?( currentCol+1) : 0;
-			ckeckSynthesisImp();
-		}else if (/*KeyBoard.isKeyRepeated(KeyBoard.GMK_DOWN)||*/key.containsAndRemove(KeyCode.DOWN)) {
-			currentRow = currentRow < ROWS - 1 ? (currentRow+1) : 0;
-			ckeckSynthesisImp();
-		}else if (/*KeyBoard.isKeyRepeated(KeyBoard.GMK_LEFT)||*/key.containsAndRemove(KeyCode.LEFT)) {
-			currentCol = currentCol > 0 ? (currentCol-1) : COLUMNS - 1;
-			ckeckSynthesisImp();
-		} else if (key.containsAndRemove(KeyCode.OK)) {
-			doKeyFire();
-		}else if (key.containsAndRemove(KeyCode.NUM0)||key.containsAndRemove(KeyCode.BACK)) {
-			//2012-11-22游戏中使用0键或者返回键 都可以打开游戏菜单
-			Game.getInstance().openSysMenu();
-//			Game.getInstance().backMainMenu();
-		} 
-		else if (key.containsAndRemove(KeyCode.NUM9)) {
-//			Game.getInstance().openMall();
-		} 
-		else if(key.containsAndRemove(KeyCode.NUM7)){
-//			Game.getInstance().openGameEnd();
-//			println();
-			Game.getInstance().openTeach();
-			//测试用
-//			CommonMain.doGameBegin();
-			}
-		//付费道具 快捷键
-		else if(key.containsAndRemove(KeyCode.NUM1)) 
-		{
-			if (UserData.getGold() >= 	100 ) {
-				UserData.consumptionGold(100);
-				Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
-				Game.getInstance().showTip("兑换成功！");
+			// 光标控制
+			if (key.containsAndRemove(KeyCode.UP)) {
+				currentRow = currentRow > 0 ? (currentRow - 1) : ROWS - 1;
 				ckeckSynthesisImp();
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-			}
-		}
-		else if(key.containsAndRemove(KeyCode.NUM2)) 
-		{
-			if (UserData.getGold() >= 	130 ) {
-				UserData.consumptionGold(130);
-				Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
-				Game.getInstance().showTip("兑换成功！");
+			} else if (key.containsAndRemove(KeyCode.RIGHT)) {
+				currentCol = currentCol < COLUMNS - 1 ? (currentCol + 1) : 0;
 				ckeckSynthesisImp();
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-			}
-		
-		}
-		else if(key.containsAndRemove(KeyCode.NUM3)) 
-		{
-			if (UserData.getGold() >= 	80 ) {
-				UserData.consumptionGold(80);
-				Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
-				Game.getInstance().showTip("兑换成功！");
+			} else if (key.containsAndRemove(KeyCode.DOWN)) {
+				currentRow = currentRow < ROWS - 1 ? (currentRow + 1) : 0;
 				ckeckSynthesisImp();
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-			}
-		}
-		else if(key.containsAndRemove(KeyCode.NUM4)) 
-		{
-			if (UserData.getGold() >= 	120 ) {
-				UserData.consumptionGold(120);
-				UserData.addStep(250);
-				Game.getInstance().showTip("兑换成功！");
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-			}
-		
-		}
-		else if(key.containsAndRemove(KeyCode.NUM5)) 
-		{
-			if (UserData.getGold() >= 	50 ) {
-				UserData.consumptionGold(50);
-				Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
-				Game.getInstance().showTip("兑换成功！");
+			} else if (key.containsAndRemove(KeyCode.LEFT)) {
+				currentCol = currentCol > 0 ? (currentCol - 1) : COLUMNS - 1;
 				ckeckSynthesisImp();
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+			} else if (key.containsAndRemove(KeyCode.OK)) {
+				doKeyFire();
+			} else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
+				// 2012-11-22游戏中使用0键或者返回键 都可以打开游戏菜单
+				Game.getInstance().openSysMenu();
+				// Game.getInstance().backMainMenu();
+			} 
+			// 付费道具 快捷键
+			else if (key.containsAndRemove(KeyCode.NUM1)) {
+				if (UserData.getGold() >= 100) {
+					UserData.consumptionGold(100);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM2)) {
+				if (UserData.getGold() >= 130) {
+					UserData.consumptionGold(130);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+
+			} else if (key.containsAndRemove(KeyCode.NUM3)) {
+				if (UserData.getGold() >= 80) {
+					UserData.consumptionGold(80);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM4)) {
+				if (UserData.getGold() >= 120) {
+					UserData.consumptionGold(120);
+					UserData.addStep(250);
+					Game.getInstance().showTip("兑换成功！");
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+
+			} else if (key.containsAndRemove(KeyCode.NUM5)) {
+				if (UserData.getGold() >= 50) {
+					UserData.consumptionGold(50);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM6)) {
+				if (UserData.getGold() >= 20) {
+					UserData.consumptionGold(20);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM7)) {
+				nodes = nodes2;
+				curActor = curActor2;
+				
+			} else if (key.containsAndRemove(KeyCode.NUM8)) {
+				
+			} else if (key.containsAndRemove(KeyCode.NUM9)) {
+			
 			}
 		}
-		else if(key.containsAndRemove(KeyCode.NUM6)) 
-		{
-			if (UserData.getGold() >= 	20 ) {
-				UserData.consumptionGold(20);
-				Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
-				Game.getInstance().showTip("兑换成功！");
-				ckeckSynthesisImp();
-			} else {
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-			}
-		}
-		
-		
-		}
-		
 		rewardStep();
 	}
 
 	/**
 	 * 检查是否可以合体（如果可以合体的话）
-	 * 
 	 */
 	static Vector nodelist = new Vector();
 	static Vector totalNodeList = new Vector();
@@ -1195,10 +1153,14 @@ public class Scene {
 	private void actorSaveToStore() {
 		if (nodes[0].getActorType() == -1) {
 			nodes[0].setActor(curActor);
+			curActor2 = curActor;
+			nodes2 = nodes;
 			createNewActor(false);
 		} else {
 			Actor temp = nodes[0].getActor();
 			nodes[0].setActor(curActor);
+			curActor2 = curActor;
+			nodes2 = nodes;
 			curActor = temp;
 		}
 	}
@@ -1258,6 +1220,12 @@ public class Scene {
 	 * 新生成的
 	 */
 	Actor curActor;
+	
+	/**
+	 * 上一步生成的actor
+	 */
+	Actor curActor2;
+	
 	/**
 	 * 新生成的ACTOR
 	 * @return

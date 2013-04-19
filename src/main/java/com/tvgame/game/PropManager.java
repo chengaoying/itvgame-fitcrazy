@@ -11,8 +11,8 @@ public class PropManager{
 	private Game engine;
 	public PlayerProp[] props ;
 	
-	public PropManager(Game engine){
-		this.engine = engine;
+	public PropManager(Game e){
+		this.engine = e;
 	}
 	
 	/*查询玩家道具*/

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.util.Stack;
 
 import javax.microedition.lcdui.Graphics;
+
 import cn.ohyeah.stb.game.GameCanvasEngine;
 import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.res.UIResource;
@@ -38,14 +39,25 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     //public MusicMaster  musicMasterKL = new MusicMaster();
     private static Object o = new Object();
     public static Game getInstance() {
-        return FitCrazyMIDlet.game;
+        return instance;
     }
+    
+    private static Game instance = buildGameEngine();
+
+	private static Game buildGameEngine() {
+		if(instance==null){
+			return new Game(FitCrazyMIDlet.getInstance());
+		}else{
+			return instance;
+		}
+	}
     
     //¹¹ÔìÆ÷
     public Game(FitCrazyMIDlet midlet) {
     	super(midlet);
+    	setRelease(false);
         lastState2 = ST_MENU;
-        pm = new PropManager(getInstance());
+        pm = new PropManager(this);
         setState(ST_MENU, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
     }
 
