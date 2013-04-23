@@ -71,6 +71,11 @@ public class Scene {
 	}
 	
 	/**
+	 * 是否可以后退一步
+	 */
+	public boolean isCanBackStep;
+	
+	/**
 	 * 
 	 * @param type
 	 * @param isBigAnimation 是否是大动画
@@ -120,6 +125,7 @@ public class Scene {
 		return nodes2;
 	}
 	
+	
 	public void initlize() {		
 		
 		if(UserData.isB_show_teach())
@@ -140,6 +146,7 @@ public class Scene {
 			System.out.println("continue game");
 			load();
 		}
+		isCanBackStep = false;
 		clearFixData();
 	}
 
@@ -222,7 +229,6 @@ public class Scene {
 //		currentCol = UserData.getcurCol();
 //		currentRow = UserData.getCurRow();
 		setColRow(UserData.getcurCol(),UserData.getCurRow());
-
 	}
 
 	public boolean isType(int column, int row,byte type) {
@@ -386,6 +392,7 @@ public class Scene {
 			nodes[index].bulidFloor();
 		}
 		createNewActor(false);
+		curActor2 = curActor;
 		currentCol = 0;
 		currentCol2 = 0;
 		currentRow = 0;
@@ -517,16 +524,30 @@ public class Scene {
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM7)) {
 				//nodes = nodes2;
-				nodesToNodes(nodes, nodes2);
-				curActor = curActor2;
-				UserData.setScore(UserData.mScore2);
-				UserData.setStep(UserData.getStep()+1);
-				ckeckSynthesisImp();
+				if(isCanBackStep == true){
+					nodesToNodes(nodes, nodes2);
+					curActor = curActor2;
+					UserData.setScore(UserData.mScore2);
+					UserData.setStep(UserData.getStep()+1);
+					ckeckSynthesisImp();
+					isCanBackStep = false;
+				}else{
+					Game.getInstance().showTip("只能后退一步");
+				}
 				
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
+				if (UserData.getGold() >= 20) {
+					UserData.consumptionGold(20);
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
+					Game.getInstance().showTip("兑换成功！");
+					ckeckSynthesisImp();
+				} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
+				}
 				
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
-			
+				UserData.setGold(1000);
 			}
 		}
 		rewardStep();
@@ -820,6 +841,7 @@ public class Scene {
 		if (currentRow == 0 && currentCol == 0) {
 			// 托盘区的操作
 			actorSaveToStore();
+			isCanBackStep = true;
 		} else {
 			// 合体类道具
 			// 炸弹
@@ -890,14 +912,17 @@ public class Scene {
 					createNewActor();
 					bOperate = true;
 				}
+				isCanBackStep = true;
 				break;
 			case Actor.TYPE_超级宝箱:
 				getCurNode().setNullSpace();
 				bOperate = true;
+				isCanBackStep = true;
 				break;
 			case Actor.TYPE_宝箱:
 				getCurNode().setNullSpace();
 				bOperate = true;
+				isCanBackStep = true;
 				break;
 			case Actor.TYPE_飞天猪:
 				switch(currentActorType){
@@ -905,6 +930,7 @@ public class Scene {
 					getCurNode().setNullSpace(); //要生成烤猪
 					createNewActor();
 					bOperate = true;
+					isCanBackStep = true;
 					//播放猪叫
 //					try {
 //						Game.getInstance().musicMasterPIG.player.setMediaTime(0);
@@ -914,7 +940,6 @@ public class Scene {
 //					} catch (MediaException e) {
 //						e.printStackTrace();
 //					}
-					System.out.println("ddddddddddddddd");
 					break;
 				}
 				break;
@@ -941,8 +966,8 @@ public class Scene {
 					showBombCJ();
 					//大动画
 //					showBIG_BOMB();
-					System.out.println("11111111111111111111");
 					bOperate = true;
+					isCanBackStep = true;
 					break;
 				}
 				break;
@@ -1278,6 +1303,7 @@ public class Scene {
 			}
 		}
 		curActor = new Actor(itemType);
+		//curActor2 = curActor;
 		//创建新的就开始检测
 		if(flag){
 			ckeckSynthesisImp();
@@ -1290,6 +1316,7 @@ public class Scene {
 	}
 	public void setCurActor(byte actorType){
 		curActor = new Actor(actorType);
+		//curActor2 = new Actor(actorType);
 		curActor2 = curActor;
 	}
 	public Actor createNewActor(byte actorType){

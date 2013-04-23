@@ -132,8 +132,16 @@ public class UserData {
 		return mScore;
 	}
 
+	public static int getScore2() {
+		return mScore2;
+	}
+	
 	public static void setScore(int score) {
 		mScore = score;
+	}
+	
+	public static void setScore2(int score){
+		mScore2 = score;
 	}
 
 	public static byte[] getSceneData() {
@@ -168,6 +176,8 @@ public class UserData {
 				setGold(dou.readInt());
 				//积分
 				setScore(gr.getScores());
+				//积分2
+				setScore2(gr.getScores());
 				//步数
 				setStep(dou.readInt());
 				
@@ -198,6 +208,8 @@ public class UserData {
 		setGold(100);
 		//积分
 		setScore(0);
+		//积分2
+		setScore2(0);
 		//步数
 		setStep(120);
 

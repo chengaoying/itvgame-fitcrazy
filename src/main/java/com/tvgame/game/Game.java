@@ -692,15 +692,15 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     	int px =60;
     	int py = (Const.HEIGHT_HALF>>1)-15;
     	
-    	for (int i = 0; i < 3; i++) {
+    	for (int i = 0; i < 4; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
-    				0, 97*i, 67, 97, 0, px, py+100*i, GraphicsUtil.LEFT_TOP);
+    				0, 77*i, 69, 77, 0, px, py+100*i, GraphicsUtil.LEFT_TOP);
 		}
     	int px2 = Const.WIDTH-130;
     	int py2 = (Const.HEIGHT_HALF>>1)-15;
-    	for (int i = 3; i < 6; i++) {
+    	for (int i = 3; i < 8; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
-    				0, 97*i, 67, 97, 0, px2, py2+100*(i-3), GraphicsUtil.LEFT_TOP);
+    				0, 77*i, 69, 77, 0, px2, py2+100*(i-3), GraphicsUtil.LEFT_TOP);
 		}
     }
     
@@ -726,6 +726,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     	setScene(null); 
     	
     	//上传积分到排行榜
+    	
     	setState(ST_MENU, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
     }
     /**

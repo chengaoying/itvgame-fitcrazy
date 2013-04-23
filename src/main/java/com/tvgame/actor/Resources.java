@@ -180,6 +180,9 @@ public class Resources {
     
     public static final int IMD_ID_FEE_ICON = 56;//收费道具大图标
     public static final int IMG_ID_CG_LOGO_03 = 57;//收费道具大图标
+    
+    public static final int IMD_ID_PROP_GRID = 58;
+    public static final int IMD_ID_PROP_NAME = 59;
     public static final String[] img_file_name = {
     	"botbar.png", 
     	"cg_logo01.png",
@@ -238,7 +241,10 @@ public class Resources {
     	"teach_03.png",
     	"teach_04.png",
     	"fee_icon.png",
-    	"cg_logo03.png"
+    	"cg_logo03.png",
+    	
+    	"game/propgrid.png",
+    	"game/propname.png",
     };
     
     static final Image[] resList = new Image[100];
