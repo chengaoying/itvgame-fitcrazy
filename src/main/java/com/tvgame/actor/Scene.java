@@ -462,66 +462,60 @@ public class Scene {
 			} 
 			// ¸¶·ÑµÀ¾ß ¿ì½Ý¼ü
 			else if (key.containsAndRemove(KeyCode.NUM1)) {
-				if (UserData.getGold() >= 100) {
-					UserData.consumptionGold(100);
+				//if (UserData.getGold() >= 100) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_Õ¨µ¯);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
 					ckeckSynthesisImp();
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
 			} else if (key.containsAndRemove(KeyCode.NUM2)) {
-				if (UserData.getGold() >= 130) {
-					UserData.consumptionGold(130);
+				//if (UserData.getGold() >= 130) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_Ä§·¨°ô);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
 					ckeckSynthesisImp();
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
 
 			} else if (key.containsAndRemove(KeyCode.NUM3)) {
-				if (UserData.getGold() >= 80) {
-					UserData.consumptionGold(80);
+				//if (UserData.getGold() >= 80) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_»ð°Ñ);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
 					ckeckSynthesisImp();
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
 			} else if (key.containsAndRemove(KeyCode.NUM4)) {
-				if (UserData.getGold() >= 120) {
-					UserData.consumptionGold(120);
+				//if (UserData.getGold() >= 120) {
 					UserData.addStep(250);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
 
 			} else if (key.containsAndRemove(KeyCode.NUM5)) {
-				if (UserData.getGold() >= 50) {
-					UserData.consumptionGold(50);
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_²ËÍ·µÜµÜ);
-					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
-					ckeckSynthesisImp();
-				} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
-			} else if (key.containsAndRemove(KeyCode.NUM6)) {
-				if (UserData.getGold() >= 20) {
-					UserData.consumptionGold(20);
+				//if (UserData.getGold() >= 20) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_·¢Ñ¿µÄÖÖ×Ó);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
 					ckeckSynthesisImp();
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
+			} else if (key.containsAndRemove(KeyCode.NUM6)) {
+				//if (UserData.getGold() >= 50) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_²ËÍ·µÜµÜ);
+					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
+					ckeckSynthesisImp();
+				/*} else {
+					Game.getInstance().openMall();
+					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
+				}*/
 			} else if (key.containsAndRemove(KeyCode.NUM7)) {
 				//nodes = nodes2;
 				if(isCanBackStep == true){
@@ -536,18 +530,17 @@ public class Scene {
 				}
 				
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
-				if (UserData.getGold() >= 20) {
-					UserData.consumptionGold(20);
+				//if (UserData.getGold() >= 20) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_²ËÍ·ÓÂÊ¿);
 					Game.getInstance().showTip("¶Ò»»³É¹¦£¡");
 					ckeckSynthesisImp();
-				} else {
+				/*} else {
 					Game.getInstance().openMall();
 					Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-				}
+				}*/
 				
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
-				UserData.setGold(1000);
+				Game.getInstance().openHelp();
 			}
 		}
 		rewardStep();
@@ -1239,11 +1232,11 @@ public class Scene {
 	private void drawTopBar(Graphics g,int x, int y){
 		int px = x-100;
 		int py = y-78;
-		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getGold()), "0123456789x", px+55, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 4,"x");
+		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+45, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
 		px+= 138;
-		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+55, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
+		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+87, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
 		px+= 147;
-		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getStep()), "0123456789x", px+63, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 4,"x");
+		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getStep()), "0123456789x", px+83, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 3,"x");
 		px+= 156;
 		//ÏÔÊ¾µ±Ç°¿É²Ù×÷µÄµÀ¾ß
 		curActor.paint(g, px+47, py+17);
@@ -1561,7 +1554,7 @@ public class Scene {
 	private void drawFitFormula(Graphics g,int x,int  y){
 //		Logger.debug("mFormulaType:"+mFormulaType);
 		int px = x +20 ;
-		int py = y +getHeight() + 45;
+		int py = y +getHeight() + 40;
 //		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO_02), "3", "0123456789", px, py, 9, 16, GraphicsUtil.TRANS_NONE, 1, 1,"0");
 //		GraphicsUtil.drawFrame(g, 0,  Resources.loadImage(Resources.IMG_ID_NO_SYMBO_02), px + 51, py+8, GraphicsUtil.TRANS_NONE, GraphicsUtil.HCENTER_VCENTER, 8, 8);
 		//µÀ¾ßÍ¼±ê

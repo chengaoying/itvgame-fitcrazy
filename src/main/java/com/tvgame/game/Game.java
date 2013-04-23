@@ -284,6 +284,11 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				exit = true;
 				break;
 			}
+		} else if (keyState.containsAndRemove(KeyCode.NUM0)) {
+			isExit = true;
+			exit = true;
+		} else if (keyState.containsAndRemove(KeyCode.NUM9)) {
+			Game.getInstance().openHelp();
 		}
 	}
     /***
@@ -690,17 +695,17 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     private void drawFeeIcon(Graphics g)
     {
     	int px =60;
-    	int py = (Const.HEIGHT_HALF>>1)-15;
+    	int py = (Const.HEIGHT_HALF>>1)-24;
     	
     	for (int i = 0; i < 4; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
-    				0, 77*i, 69, 77, 0, px, py+100*i, GraphicsUtil.LEFT_TOP);
+    				0, 77*i, 69, 77, 0, px, py+78*i, GraphicsUtil.LEFT_TOP);
 		}
     	int px2 = Const.WIDTH-130;
-    	int py2 = (Const.HEIGHT_HALF>>1)-15;
-    	for (int i = 3; i < 8; i++) {
+    	int py2 = (Const.HEIGHT_HALF>>1)-24;
+    	for (int i = 4; i < 8; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
-    				0, 77*i, 69, 77, 0, px2, py2+100*(i-3), GraphicsUtil.LEFT_TOP);
+    				0, 77*i, 69, 77, 0, px2, py2+78*(i-4), GraphicsUtil.LEFT_TOP);
 		}
     }
     

@@ -66,7 +66,7 @@ public class UserData {
 	/**
 	 * 龙币
 	 */
-	public static int mGold = 100;
+	//public static int mGold = 100;
 	/**
 	 * 当局游戏的步数
 	 */
@@ -109,14 +109,14 @@ public class UserData {
 	public static int getCurRow() {
 		return curRow;
 	}
-	public static int getGold() {
+	/*public static int getGold() {
 		return mGold;
 	}
 	
 
 	public static void setGold(int gold) {
 		mGold = gold;
-	}
+	}*/
 
 	public static int getStep() {
 		return mStep;
@@ -173,7 +173,7 @@ public class UserData {
 				}
 				Achichment.achi_arrived = achichment;
 				//金币
-				setGold(dou.readInt());
+				//setGold(dou.readInt());
 				//积分
 				setScore(gr.getScores());
 				//积分2
@@ -205,7 +205,7 @@ public class UserData {
 		Achichment.achi_arrived = achichment;
 		
 		//金币
-		setGold(100);
+		//setGold(100);
 		//积分
 		setScore(0);
 		//积分2
@@ -221,9 +221,9 @@ public class UserData {
 	 * 
 	 * @param gold
 	 */
-	public static void addGold(int gold) {
+	/*public static void addGold(int gold) {
 		mGold += gold;
-	}
+	}*/
 
 //	/**
 //	 * 获得步数
@@ -244,9 +244,9 @@ public class UserData {
 		mScore2 = mScore;
 		mScore += score;
 	}
-	public static void consumptionGold(int gold){
+	/*public static void consumptionGold(int gold){
 		mGold -=gold;
-	}
+	}*/
 	/***
 	 * 获取随机会场景
 	 * @return
@@ -282,7 +282,7 @@ public class UserData {
 				dou.writeBoolean(achichment[i]);
 			}
 			//金币
-			dou.writeInt(getGold());
+			//dou.writeInt(getGold());
 			//积分
 			//dou.writeInt(getScore());
 			//步数
@@ -305,7 +305,7 @@ public class UserData {
 		for(int i =0 ;i<achichment.length;i++){
 			System.out.println(achichment[i]);
 		}
-		System.out.println(getGold());
+		//System.out.println(getGold());
 		System.out.println(getScore());
 		System.out.println(getStep());
 		System.out.println(b_show_teach);

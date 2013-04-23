@@ -9,7 +9,6 @@ import cn.ohyeah.stb.ui.PopupConfirm;
 import cn.ohyeah.stb.ui.PopupText;
 
 import com.tvgame.actor.Resources;
-import com.tvgame.actor.Scene;
 import com.tvgame.actor.UserData;
 import com.tvgame.constant.Const;
 import com.tvgame.ui.UiObject;
@@ -69,6 +68,10 @@ public class SysMenu implements UiObject {
 			selectIndex = selectIndex>0?--selectIndex:game_pause_str.length-1;
 		}else if(key.containsAndRemove(KeyCode.DOWN)){
 			selectIndex = selectIndex<game_pause_str.length-1?++selectIndex:0;
+		}else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
+			Game.getInstance().popStack();
+		}else if (key.containsAndRemove(KeyCode.NUM1)) {
+			Game.getInstance().openMall();
 		}
 	}
 

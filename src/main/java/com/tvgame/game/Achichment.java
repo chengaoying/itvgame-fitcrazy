@@ -44,7 +44,7 @@ public class Achichment implements UiObject {
 		  if(!achi_arrived[0])
 		  {
 			  achi_arrived[0]=true;
-			  UserData.addGold(8);
+			 // UserData.addGold(8);
 			  achi_which = 0;
 			  Game.getInstance().push2Stack(new Achi_GameTip());
 			  return;
@@ -55,7 +55,7 @@ public class Achichment implements UiObject {
 		  if(!achi_arrived[1])
 		  {
 			  achi_arrived[1]=true;
-			  UserData.addGold(16);
+			  //UserData.addGold(16);
 			  achi_which = 1;
 			  Game.getInstance().push2Stack(new Achi_GameTip());
 			  return;
@@ -66,7 +66,7 @@ public class Achichment implements UiObject {
 	  {
 		  if(!achi_arrived[2]){
 			  achi_arrived[2]=true;
-			  UserData.addGold(25);
+			 // UserData.addGold(25);
 			  achi_which = 2;
 			  Game.getInstance().push2Stack(new Achi_GameTip());
 			  return;
@@ -76,7 +76,7 @@ public class Achichment implements UiObject {
 	  else if(score>=award_range[6]&&score<award_range[7])//[7000,8500)
 	  {  if(!achi_arrived[3]){
 		  achi_arrived[3]=true;
-		  UserData.addGold(40);
+		  //UserData.addGold(40);
 		  achi_which = 3;
 		  Game.getInstance().push2Stack(new Achi_GameTip());
 		  return;
@@ -86,7 +86,7 @@ public class Achichment implements UiObject {
 	  {
 		  if(!achi_arrived[4]){
 			  achi_arrived[4]=true;
-			  UserData.addGold(60);
+			 // UserData.addGold(60);
 			  achi_which = 4;
 			  Game.getInstance().push2Stack(new Achi_GameTip());
 			  return;
@@ -96,7 +96,7 @@ public class Achichment implements UiObject {
 	  {
 		  if(!achi_arrived[5]){
 			  achi_arrived[5]=true;
-			  UserData.addGold(80);
+			  //UserData.addGold(80);
 			  achi_which = 5;
 			  Game.getInstance().push2Stack(new Achi_GameTip());
 			  return;
@@ -106,7 +106,7 @@ public class Achichment implements UiObject {
 	  {
 		  if(!achi_arrived[6]){
 		  achi_arrived[6]=true;
-		  UserData.addGold(100);
+		 // UserData.addGold(100);
 		  achi_which = 6;
 		  Game.getInstance().push2Stack(new Achi_GameTip());
 		  return;

@@ -114,8 +114,8 @@ public class Mall implements UiObject {
 		g.setColor(0x101a10);
 		g.fillRect(show_money_x + 40, show_money_y, 80, 20);
 		g.setColor(0xffffff);
-		g.drawString(UserData.getGold() + "", show_money_x + 70, show_money_y,
-				20);
+		/*g.drawString(UserData.getGold() + "", show_money_x + 70, show_money_y,
+				20);*/
 
 	}
 
@@ -137,10 +137,10 @@ public class Mall implements UiObject {
 	public static void doPaySucess(){
 		switch(payId){
 		case 0:
-			UserData.addGold(500);
+			//UserData.addGold(500);
 			break;
 		case 1:
-			UserData.addGold(1200);
+			//UserData.addGold(1200);
 			break;	
 		}
 	}
@@ -164,24 +164,24 @@ public class Mall implements UiObject {
 				}
 			} else {
 				if (mall_change_index<6) {
-					if (UserData.getGold() >= 	consumptionGold[mall_change_index]) {
-						UserData.consumptionGold(	consumptionGold[mall_change_index]);
+					//if (UserData.getGold() >= 	consumptionGold[mall_change_index]) {
+						//UserData.consumptionGold(	consumptionGold[mall_change_index]);
 						Game.getInstance().getScene()
 								.setCurActor(buyActorTypes[mall_change_index]);
 						Game.getInstance().popStack();
-					} else {
+					/*} else {
 						Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
 						tab_money = true;
-					}
+					}*/
 				}else if(mall_change_index==6){
-					if (UserData.getGold() >= 	consumptionGold[mall_change_index]) {
-						UserData.consumptionGold(	consumptionGold[mall_change_index]);
+					//if (UserData.getGold() >= 	consumptionGold[mall_change_index]) {
+						//UserData.consumptionGold(	consumptionGold[mall_change_index]);
 						UserData.addStep(250);
 						Game.getInstance().popStack();
-					} else {
+					/*} else {
 						tab_money = true;
 						Game.getInstance().showTip("Áú±Ò²»×ã£¬¶Ò»»Ê§°Ü¡£ÇëÏÈ³äÖµ£¡");
-					}
+					}*/
 				} 
 			}
 		} else if (key.containsAndRemove(KeyCode.NUM0)||key.containsAndRemove(KeyCode.BACK)) {

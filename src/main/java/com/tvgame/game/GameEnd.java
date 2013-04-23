@@ -71,11 +71,11 @@ public class GameEnd implements UiObject {
 	public void update(KeyState key) {
 		// TODO Auto-generated method stub
 		if (key.containsAndRemove(KeyCode.OK)) {
-			UserData.addGold(count[0] * 5);
+			/*UserData.addGold(count[0] * 5);
 			UserData.addGold(count[1] * 10);
 			UserData.addGold(count[2] * 20);
 			UserData.addGold(count[3] * 30);
-			UserData.addGold(count[4] * 50);
+			UserData.addGold(count[4] * 50);*/
 			//重新开始游戏
 			Game.getInstance().getScene().newScene();
 			//新游戏分数清零
