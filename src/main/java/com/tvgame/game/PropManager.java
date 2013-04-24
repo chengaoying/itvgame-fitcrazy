@@ -2,8 +2,10 @@ package com.tvgame.game;
 
 import cn.ohyeah.itvgame.model.OwnProp;
 import cn.ohyeah.itvgame.model.Prop;
+import cn.ohyeah.stb.game.Recharge;
 import cn.ohyeah.stb.game.ServiceWrapper;
 import cn.ohyeah.stb.res.UIResource;
+import cn.ohyeah.stb.ui.PopupConfirm;
 import cn.ohyeah.stb.ui.PopupText;
 
 public class PropManager{
@@ -31,11 +33,7 @@ public class PropManager{
 			}
 		}
 		
-/*		for(int i=0;i<pps.length;i++){
-			System.out.println("ID=="+pps[i].getPropId());
-			System.out.println("count=="+pps[i].getCount());
-		}
-*/		for(int i=0;i<props.length;i++){
+		for(int i=0;i<props.length;i++){
 			System.out.println("道具ID=="+props[i].getPropId());
 			System.out.println("道具数量=="+props[i].getNums());
 		}
@@ -101,27 +99,60 @@ public class PropManager{
 		return 0;
 	}
 	
+	public void addPropNum(int propId){
+		int len = props.length;
+		for(int i=len-1;i>=0;i--){
+			if(props[i].getPropId()==propId){
+				props[i].setNums(props[i].getNums()+1);
+			}
+		}
+	}
+	public void reducePropNum(int propId){
+		int len = props.length;
+		for(int i=len-1;i>=0;i--){
+			if(props[i].getPropId()==propId){
+				props[i].setNums(props[i].getNums()-1);
+			}
+		}
+	}
+	
 	public boolean buyProp(int propId, int propCount){
 		PlayerProp pp = getPropById(propId);
-		ServiceWrapper sw = engine.getServiceWrapper();
-		//sw.purchaseProp(propId, propCount, "购买"+propName);
-		sw.expend(pp.getPrice(), propId, "购买"+pp.getName());
-		PopupText pt = UIResource.getInstance().buildDefaultPopupText();
-		if (sw.isServiceSuccessful()) {
-			pt.setText("购买"+pp.getName()+"成功");
+		if (engine.getEngineService().getBalance() >= pp.getPrice()) {
+			ServiceWrapper sw = engine.getServiceWrapper();
+			sw.purchaseProp(propId, 1, "购买"+pp.getName());
+			PopupText pt = UIResource.getInstance().buildDefaultPopupText();
+			if (sw.isServiceSuccessful()) {
+				pt.setText("购买"+pp.getName()+"成功");
+				addPropNum(propId);
+			}
+			else {
+				pt.setText("购买"+pp.getName()+"失败, 原因: "+sw.getServiceMessage());
+				
+			}
+			pt.popup();
+			return sw.isServiceSuccessful();
+		}else {
+			PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+			pc.setText(engine.getEngineService().getExpendAmountUnit()+"不足,是否充值");
+			if (pc.popup() == 0) {
+				Recharge recharge = new Recharge(engine);
+				recharge.recharge();
+			}
+			return false;
 		}
-		else {
-			pt.setText("购买"+pp.getName()+"失败, 原因: "+sw.getServiceMessage());
-			
-		}
-		pt.popup();
-		return sw.isServiceSuccessful();
 	}
 	
 	/*同步道具*/
 	public void sysProps(){
+		int[] ids = new int[8];
+		int[] counts = new int[8];
+		for(int i=0;i<props.length;i++){
+			ids[i] = props[i].getPropId();
+			counts[i] = props[i].getNums();
+		}
 		ServiceWrapper sw = engine.getServiceWrapper();
-		//sw.synProps(66, StateGame.ventoseNum);
+		sw.synProps(ids, counts);
 		System.out.println("同步道具:"+sw.isServiceSuccessful());
 		for(int i=0;i<props.length;i++){
 			System.out.println("道具ID=="+props[i].getPropId());

@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Stack;
 
+import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
+import cn.ohyeah.itvgame.model.GameRanking;
 import cn.ohyeah.stb.game.GameCanvasEngine;
+import cn.ohyeah.stb.game.ServiceWrapper;
 import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.res.UIResource;
 import cn.ohyeah.stb.ui.PopupText;
@@ -33,6 +36,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     public static boolean isNewGame = true;	// 新游戏
     public int lastState2;
     public static PropManager pm;
+    public GameRanking[] rankList;
     
     //音效
     //public MusicMaster  musicMasterPIG = new MusicMaster();
@@ -234,19 +238,19 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     private void drawnMenu(Graphics g) {
     	GraphicsUtil.drawImage(g, Const.WIDTH_HALF,Const.HEIGHT_HALF, GraphicsUtil.HCENTER_VCENTER, Resources.IMG_ID_MENU_BG);
     	int px = 500, py;
-    	for(int i = 0;i<5;i++){
-    		py = 100+i*60;
+    	for(int i = 0;i<6;i++){
+    		py = 70+i*60;
     		GraphicsUtil.drawImage(g, px, py, GraphicsUtil.HCENTER_TOP, Resources.IMG_ID_MAINMENU_ITEM_BUTTON);
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMG_ID_MAINMENU_ITEM_TEXT), 83*i, 0, 83,26 , 0, px, py+10, GraphicsUtil.HCENTER_TOP);
     	}
-    	GraphicsUtil.drawImage(g, px-100+iClock%12, 100+selectIndex*60, GraphicsUtil.HCENTER_TOP, Resources.IMG_ID_MAINMENU_ITEM_HAND);
+    	GraphicsUtil.drawImage(g, px-100+iClock%12, 70+selectIndex*60, GraphicsUtil.HCENTER_TOP, Resources.IMG_ID_MAINMENU_ITEM_HAND);
     }
     
 	private void updataMenu() {
 		if (keyState.containsAndRemove(KeyCode.DOWN)) {
-			selectIndex = selectIndex < 4 ? ++selectIndex : 0;
+			selectIndex = selectIndex < 5 ? ++selectIndex : 0;
 		} else if (keyState.containsAndRemove(KeyCode.UP)) {
-			selectIndex = selectIndex > 0 ? --selectIndex : 4;
+			selectIndex = selectIndex > 0 ? --selectIndex : 5;
 		} else if (keyState.containsAndRemove(KeyCode.OK)) {
 			switch (selectIndex) {
 			case 0:  		//继续游戏
@@ -274,12 +278,19 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			case 2:
 				// 排行榜信息
 				// CommonMain.doMarkLoadList("10",CommonMain.MARK_TYPE_SINGLE);
+				ServiceWrapper sw = getServiceWrapper();
+				rankList = sw.queryRankingList(0, 10);
 				openRank();
 				break;
 			case 3:
-				openHelp();
+				//openHelp();
+				pm.queryProps();
+				openShop();
 				break;
 			case 4:
+				openAchichment();
+				break;
+			case 5:
 				isExit = true;
 				exit = true;
 				break;
@@ -911,4 +922,59 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     		}else if(keyState.containsAndRemove(KeyCode.NUM0)||keyState.containsAndRemove(KeyCode.BACK))
     			backMainMenu();
     }
+    public void setFont(int size, boolean isBold, Graphics g) {
+		Font font = null;
+		if(!isBold){
+			if (size <= smallFontSize) {
+				font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+			}
+			else if (size <= mediumFontSize) {
+				if (size >= smallFontSize+((mediumFontSize-smallFontSize)>>1)) {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+				}
+				else {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+				}
+			}
+			else if (size <= largeFontSize) {
+				if (size >= mediumFontSize+((largeFontSize-mediumFontSize)>>1)) {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_LARGE);
+				}
+				else {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+				}
+			}
+			else {
+				font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_LARGE);
+			}
+		}else{
+			if (size <= smallFontSize) {
+				font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_SMALL);
+			}
+			else if (size <= mediumFontSize) {
+				if (size >= smallFontSize+((mediumFontSize-smallFontSize)>>1)) {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_MEDIUM);
+				}
+				else {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_SMALL);
+				}
+			}
+			else if (size <= largeFontSize) {
+				if (size >= mediumFontSize+((largeFontSize-mediumFontSize)>>1)) {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_LARGE);
+				}
+				else {
+					font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_MEDIUM);
+				}
+			}
+			else {
+				font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_BOLD, Font.SIZE_LARGE);
+			}
+		}
+		g.setFont(font);
+	}
+
+	public void setDefaultFont(Graphics g) {
+		setFont(20,false,g);
+	}
 }

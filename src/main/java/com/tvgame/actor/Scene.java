@@ -6,6 +6,8 @@ import javax.microedition.lcdui.Graphics;
 
 import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.key.KeyState;
+import cn.ohyeah.stb.res.UIResource;
+import cn.ohyeah.stb.ui.PopupConfirm;
 import cn.ohyeah.stb.util.RandomValue;
 
 import com.tvgame.constant.Const;
@@ -462,83 +464,121 @@ public class Scene {
 			} 
 			// 付费道具 快捷键
 			else if (key.containsAndRemove(KeyCode.NUM1)) {
-				//if (UserData.getGold() >= 100) {
+				int nums = Game.getInstance().pm.getPropNumsById(127);
+				if (nums > 0) {
 					Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
 					Game.getInstance().showTip("兑换成功！");
 					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-			} else if (key.containsAndRemove(KeyCode.NUM2)) {
-				//if (UserData.getGold() >= 130) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
-					Game.getInstance().showTip("兑换成功！");
-					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-
-			} else if (key.containsAndRemove(KeyCode.NUM3)) {
-				//if (UserData.getGold() >= 80) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
-					Game.getInstance().showTip("兑换成功！");
-					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-			} else if (key.containsAndRemove(KeyCode.NUM4)) {
-				//if (UserData.getGold() >= 120) {
-					UserData.addStep(250);
-					Game.getInstance().showTip("兑换成功！");
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-
-			} else if (key.containsAndRemove(KeyCode.NUM5)) {
-				//if (UserData.getGold() >= 20) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
-					Game.getInstance().showTip("兑换成功！");
-					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-			} else if (key.containsAndRemove(KeyCode.NUM6)) {
-				//if (UserData.getGold() >= 50) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
-					Game.getInstance().showTip("兑换成功！");
-					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-			} else if (key.containsAndRemove(KeyCode.NUM7)) {
-				//nodes = nodes2;
-				if(isCanBackStep == true){
-					nodesToNodes(nodes, nodes2);
-					curActor = curActor2;
-					UserData.setScore(UserData.mScore2);
-					UserData.setStep(UserData.getStep()+1);
-					ckeckSynthesisImp();
-					isCanBackStep = false;
-				}else{
-					Game.getInstance().showTip("只能后退一步");
+					Game.getInstance().pm.reducePropNum(127);
+				} else {
+					/*Game.getInstance().openMall();
+					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");*/
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
 				}
-				
-			} else if (key.containsAndRemove(KeyCode.NUM8)) {
-				//if (UserData.getGold() >= 20) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
-					Game.getInstance().showTip("兑换成功！");
+			} else if (key.containsAndRemove(KeyCode.NUM2)) {
+				int nums = Game.getInstance().pm.getPropNumsById(128);
+				if (nums > 0) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
 					ckeckSynthesisImp();
-				/*} else {
-					Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-				}*/
-				
+					Game.getInstance().pm.reducePropNum(128);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM3)) {
+				int nums = Game.getInstance().pm.getPropNumsById(129);
+				if (nums > 0) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
+					ckeckSynthesisImp();
+					Game.getInstance().pm.reducePropNum(129);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM4)) {
+				int nums = Game.getInstance().pm.getPropNumsById(130);
+				if (nums > 0) {
+					UserData.addStep(250);
+					ckeckSynthesisImp();
+					Game.getInstance().pm.reducePropNum(130);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM5)) {
+				int nums = Game.getInstance().pm.getPropNumsById(131);
+				if (nums > 0) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
+					ckeckSynthesisImp();
+					Game.getInstance().pm.reducePropNum(131);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM6)) {
+				int nums = Game.getInstance().pm.getPropNumsById(132);
+				if (nums > 0) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
+					ckeckSynthesisImp();
+					Game.getInstance().pm.reducePropNum(132);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM7)) {
+				int nums = Game.getInstance().pm.getPropNumsById(133);
+				if (nums > 0) {
+					//nodes = nodes2;
+					if(isCanBackStep == true){
+						nodesToNodes(nodes, nodes2);
+						curActor = curActor2;
+						UserData.setScore(UserData.mScore2);
+						UserData.setStep(UserData.getStep()+1);
+						ckeckSynthesisImp();
+						isCanBackStep = false;
+					}else{
+						Game.getInstance().showTip("只能后退一步");
+					}
+					Game.getInstance().pm.reducePropNum(133);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
+			} else if (key.containsAndRemove(KeyCode.NUM8)) {
+				int nums = Game.getInstance().pm.getPropNumsById(134);
+				if (nums > 0) {
+					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
+					ckeckSynthesisImp();
+					Game.getInstance().pm.reducePropNum(134);
+				} else {
+					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					pc.setText("道具数量为0,是否去购买?");
+					if(pc.popup()==0){
+						Game.getInstance().openShop();
+					}
+				}
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
 				Game.getInstance().openHelp();
 			}

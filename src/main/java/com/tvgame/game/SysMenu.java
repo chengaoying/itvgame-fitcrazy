@@ -61,6 +61,7 @@ public class SysMenu implements UiObject {
 					pt.setText("±£´æ³É¹¦!");
 					pt.popup();
 				}
+				Game.getInstance().pm.sysProps();
 				Game.getInstance().backMainMenu();
 				break;
 			}

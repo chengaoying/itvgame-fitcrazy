@@ -5,4 +5,4 @@ MicroEdition-Profile: MIDP-2.0
 MIDlet-Jar-URL: fitcrazy.jar
 MIDlet-Name: fitcrazy MIDlet Suite
 MIDlet-1: fitcrazyMIDlet,,com.tvgame.midlet.FitCrazyMIDlet
-MIDlet-Jar-Size: 941191
+MIDlet-Jar-Size: 1027638

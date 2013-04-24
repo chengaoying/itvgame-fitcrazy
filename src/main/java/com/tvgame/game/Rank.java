@@ -1,7 +1,5 @@
 package com.tvgame.game;
 
-import java.util.Vector;
-
 import javax.microedition.lcdui.Graphics;
 
 import cn.ohyeah.stb.key.KeyCode;
@@ -12,67 +10,42 @@ import com.tvgame.actor.UserData;
 import com.tvgame.constant.Const;
 import com.tvgame.ui.UiObject;
 import com.tvgame.util.GraphicsUtil;
-import com.tvgame.util.Util;
+import com.tvgame.util.TextView;
 
 public class Rank implements UiObject {
-	private int rank_index = 0;//
 
 	public void draw(Graphics g) {
-		Game.getInstance().drawBackGround(g,"排行榜");
-//<<<<<<< .mine
-		if(UserData.getRankList() !=null){
-			Util.draw3DString(g, "名次", Const.WIDTH_HALF/4+40, 100, 20, 0xffffff, 0x0);
-			Util.draw3DString(g, "用户名 ", Const.WIDTH_HALF-40, 100, GraphicsUtil.LEFT_TOP, 0xffffff, 0x0);
-			Util.draw3DString(g, "得分", Const.WIDTH_HALF+180, 100, GraphicsUtil.LEFT_TOP, 0xffffff, 0x0);
-			String data[];
-			for (int i = 0; i < UserData.getRankList().size(); i++) {
-				data =(String [])UserData.getRankList().elementAt(i);
-//				if(i==achi_item_index){
-//					drawAchiItemBg(g);
-//				}
-				Util.draw3DString(g, data[3], Const.WIDTH_HALF/4+50, 125+(Const.FONT_H+4)*i, 20, 0xffffff, 0x0);
-				Util.draw3DString(g, data[0], Const.WIDTH_HALF-60, 125+(Const.FONT_H+4)*i, 20, 0xffffff, 0x0);
-				Util.draw3DString(g, data[2], Const.WIDTH_HALF+170, 125+(Const.FONT_H+4)*i, 20, 0xffffff, 0x0);
+		g.drawImage(Resources.loadImage(Resources.IMG_ID_RANKING), 0, 0, 20);
+		String myRanking = "0";
+		String myScore = "";
+		if(Game.getInstance().rankList != null && Game.getInstance().rankList.length > 0){
+			Game.getInstance().setFont(15, true, g);
+			g.setColor(0x000000);
+			int idW = 204, idH = 25, scoreW = 145, scoreH = 25;
+			int idX = 180, idY = 183, scoreX = 384, scoreY = 185;
+			for(int i=0;i<Game.getInstance().rankList.length;i++){
+				String id = Game.getInstance().rankList[i].getUserId();
+				String score = String.valueOf(Game.getInstance().rankList[i].getScores());
+				TextView.showSingleLineText(g, id, idX, idY+(i*idH), idW, idH, 1);
+				TextView.showSingleLineText(g, score, scoreX, scoreY+(i*scoreH), scoreW, scoreH, 1);
+				if(Game.getInstance().rankList[i].getUserId().equals(Game.getInstance().getEngineService().getUserId())){
+					myRanking = String.valueOf(Game.getInstance().rankList[i].getRanking());
+					myScore = String.valueOf(Game.getInstance().rankList[i].getScores());
+				}
+				g.drawString(myRanking, 304, 450, 20);
+				g.drawString(myScore, 483, 450, 20);
 			}
+			Game.getInstance().setDefaultFont(g);
 		}
-//=======
-//		Achichment.drawAchiItemBg(g, rank_index);
-//		int x = Const.WIDTH_HALF>>2;
-//		int y = Const.HEIGHT_HALF>>2;
-//		for (int i = 0; i < total_item; i++) {
-//			com.tvgame.util.Util.draw3DString(g, ""+(i+1), x+140, y+68+33*i, 0, 0x0, 0xffcc00);
-//			com.tvgame.util.Util.draw3DString(g, "得分: "+ UserData.getScore(), x+220, y+68+33*i, 0, 0xffffff, 0xff0000);
-//		}
-//>>>>>>> .r264
-	}
-	/**
-	 * 
-	 * 绘制成就选项的蓝色背景
-	 * @param g
-	 */
-	public void drawAchiItemBg(Graphics g)
-	{
-		for(int index=0;index<20;index++){
-		GraphicsUtil.drawImage(g, Const.WIDTH_HALF/4+40+index*10, 125+(Const.FONT_H+4)*rank_index, 20, Resources.IMG_ID_ACHI_ITEMBG);
-		}
+		GraphicsUtil.drawImage(g, Const.WIDTH_HALF, Const.HEIGHT, GraphicsUtil.HCENTER_BOTTOM, Resources.IMG_ID_BOTBAR);
 	}
 
 	public void update(KeyState key) {
     	if(key.containsAndRemove(KeyCode.OK)){
 			Game.getInstance().popStack();
-    	}else if(key.containsAndRemove(KeyCode.UP)){
-    		if(UserData.getRankList() !=null){
-    			rank_index = rank_index >0?--rank_index:UserData.getRankList().size()-1;
-    		}
-    	}else if(key.containsAndRemove(KeyCode.DOWN)){
-    		if(UserData.getRankList() !=null){
-    			rank_index = rank_index <UserData.getRankList().size()-1?++rank_index:0;
-    		}
+    	}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
+    		Game.getInstance().popStack();
     	}
-//    	else if(KeyBoard.isKeyDown(KeyBoard.GMK_UP))
-//    		rank_index = rank_index >0?--rank_index:total_item-1;
-//    	else if(KeyBoard.isKeyDown(KeyBoard.GMK_DOWN))
-//    		rank_index = rank_index <total_item-1?++rank_index:0;
 	}
 
 }

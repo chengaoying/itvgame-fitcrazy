@@ -182,6 +182,7 @@ public class Resources {
     public static final int IMG_ID_CG_LOGO_03 = 57;//收费道具大图标
     
     public static final int IMG_ID_SHOP = 58;
+    public static final int IMG_ID_RANKING = 59;
     public static final String[] img_file_name = {
     	"botbar.png", 
     	"cg_logo01.png",
@@ -243,6 +244,7 @@ public class Resources {
     	"cg_logo03.png",
     	
     	"shop/shop.png",
+    	"ranking/rank.png",
     };
     
     static final Image[] resList = new Image[100];
