@@ -409,4 +409,39 @@ public class GraphicsUtil {
     	}
 
     }
+    /**
+	 * 绘制矩形框
+	 * @param g
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param lineW
+	 * @param color
+	 */
+	public static void drawRect(Graphics g, int x, int y, int w, int h, int lineW, int color) {
+		g.setColor(color);
+		drawRect(g, x, y, w, h, lineW);
+	}
+	
+	/**
+	 * 绘制矩形框
+	 * @param g
+	 * @param x
+	 * @param y
+	 * @param w
+	 * @param h
+	 * @param lineW
+	 */
+	public static void drawRect(Graphics g, int x, int y, int w, int h, int lineW) {
+		int sx = x-1, sy = y-1, sw = w+1, sh = h+1;
+		g.drawRect(sx, sy, sw, sh);
+		for (int i = 1; i < lineW; ++i) {
+			--sx;
+			--sy;
+			sw+=2;
+			sh+=2;
+			g.drawRect(sx, sy, sw, sh);
+		}
+	}
 }

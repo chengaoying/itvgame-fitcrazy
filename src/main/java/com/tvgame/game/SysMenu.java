@@ -19,7 +19,7 @@ import com.tvgame.util.Util;
 //暂停菜单
 public class SysMenu implements UiObject {
 	int selectIndex;
-	private String game_pause_str[] ={"继续游戏","游戏帮助","成就列表","回主菜单"};
+	private String game_pause_str[] ={"继续游戏","游戏商城","成就列表","回主菜单"};
 	public SysMenu(){
 
 	}
@@ -44,8 +44,8 @@ public class SysMenu implements UiObject {
 				//返回游戏
 				break;
 			case 1:
-				//帮助
-				Game.getInstance().openHelp();
+				//商城
+				Game.getInstance().openShop();
 				break;
 			case 2:
 				Game.getInstance().openAchichment();
@@ -70,8 +70,6 @@ public class SysMenu implements UiObject {
 			selectIndex = selectIndex<game_pause_str.length-1?++selectIndex:0;
 		}else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
 			Game.getInstance().popStack();
-		}else if (key.containsAndRemove(KeyCode.NUM1)) {
-			Game.getInstance().openMall();
 		}
 	}
 

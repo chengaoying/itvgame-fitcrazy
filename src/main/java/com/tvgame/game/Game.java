@@ -735,11 +735,18 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     	setState(ST_MENU, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
     }
     /**
-     * 打开商城(可能要请求网络数据)
+     * 
      */
     public void openMall(){
     	//商城界面暂时用Tip演示
     	push2Stack(new Mall());
+    }
+    
+    /**
+     * 打开商城()
+     */
+    public void openShop(){
+    	push2Stack(new Shop());
     }
     
     /**
