@@ -33,6 +33,10 @@ public class PropManager{
 			}
 		}
 		
+		printInfo();
+	}
+	
+	public void printInfo(){
 		for(int i=0;i<props.length;i++){
 			System.out.println("道具ID=="+props[i].getPropId());
 			System.out.println("道具数量=="+props[i].getNums());

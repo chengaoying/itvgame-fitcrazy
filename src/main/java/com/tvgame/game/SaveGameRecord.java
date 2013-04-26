@@ -1,6 +1,8 @@
 package com.tvgame.game;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -29,18 +31,104 @@ public class SaveGameRecord {
 	}
 	
 	/**
-	 * 保存积分
+	 * 保存成就
 	 */
-	public void saveScore(){
+	public void saveAttainment(){
+		byte record[];
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		DataOutputStream dout = new DataOutputStream(bout);
 		ServiceWrapper sw = game.getServiceWrapper();
-		GameAttainment ga = sw.readAttainment(attainmentId);
-		if((ga==null && UserData.getScore()>0) || (ga!=null && UserData.getScore()>ga.getScores())){
+		try {
+			
+			//成就数据
+			for(int i = 0 ;i<UserData.achi_list.length;i++){
+				for(int j=0;j<UserData.achi_list[i].length;j++){
+					dout.writeBoolean(UserData.achi_list[i][j]);
+				}
+			}
+			for(int i = 0 ;i<UserData.achi_show.length;i++){
+				for(int j=0;j<UserData.achi_show[i].length;j++){
+					dout.writeBoolean(UserData.achi_show[i][j]);
+				}
+			}
+			for(int i = 0 ;i<UserData.nums.length;i++){
+				dout.writeInt(UserData.nums[i]);
+			}
+			record = bout.toByteArray();
+			GameAttainment ga = sw.readAttainment(attainmentId);
 			GameAttainment attainment = new GameAttainment();
+			if(ga != null && ga.getScores() >= UserData.getScore()){
+				attainment.setScores(ga.getScores());
+			}else{
+				attainment.setScores(UserData.getScore());
+			}
 			attainment.setAttainmentId(attainmentId);
 			attainment.setScores(UserData.getScore());
-			attainment.setRemark("游戏积分");
+			attainment.setRemark("游戏成就");
+			attainment.setData(record);
 			sw.saveAttainment(attainment);
+			UserData.printAchi();
+		} catch (Exception e) {
+			System.out.println("保存游戏成就失败，原因："+e.getMessage());
+			e.printStackTrace();
+		} finally{
+			try {
+				dout.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			finally{
+				try {
+					bout.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
+	}
+	
+	public boolean loadAttainment(){
+		ServiceWrapper sw = game.getServiceWrapper();
+		GameAttainment ga = sw.readAttainment(attainmentId);
+		if(!sw.isServiceSuccessful() || ga==null){
+			return false;
+		}
+		ByteArrayInputStream ous=	new ByteArrayInputStream(ga.getData());
+		DataInputStream dou = new DataInputStream(ous);	
+		try {
+			//成就数据
+			for(int i = 0 ;i<UserData.achi_list.length;i++){
+				for(int j=0;j<UserData.achi_list[i].length;j++){
+					UserData.achi_list[i][j] = dou.readBoolean();
+				}
+			}
+			for(int i = 0 ;i<UserData.achi_show.length;i++){
+				for(int j=0;j<UserData.achi_show[i].length;j++){
+					UserData.achi_show[i][j] = dou.readBoolean();
+				}
+			}
+			for(int i = 0 ;i<UserData.nums.length;i++){
+				UserData.nums[i] = dou.readInt();
+			}
+			UserData.printAchi();
+		}catch(Exception e){
+			System.out.println("读取游戏成就失败，原因："+e.getMessage());
+			e.printStackTrace();
+		}finally{
+			try {
+				ous.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			finally{
+				try {
+					dou.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return true;
 	}
 	
 	/*保存游戏记录*/
@@ -60,7 +148,7 @@ public class SaveGameRecord {
 			gameRecord.setRecordId(recordId);
 			sw.saveRecord(gameRecord);
 		} catch (Exception e) {
-			System.out.println("保存游戏失败，原因："+e.getMessage());
+			System.out.println("保存游戏记录失败，原因："+e.getMessage());
 			e.printStackTrace();
 		} finally{
 			try {

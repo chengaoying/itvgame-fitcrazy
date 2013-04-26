@@ -229,6 +229,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     	Resources.releaseImage(Resources.IMG_ID_CG_LOGO_01);
     	//Resources.releaseImage(Resources.IMG_ID_CG_LOGO_02);
     	Resources.releaseImage(Resources.IMG_ID_CG_LOGO_03);
+    	
     	setState(ST_MENU, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
     	}
     }
@@ -256,6 +257,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			case 0:  		//继续游戏
 				SaveGameRecord r = new SaveGameRecord(Game.getInstance());
 				boolean result = r.loadRecord();
+				r.loadAttainment();
 				if(!result){
 					PopupText pt = UIResource.getInstance().buildDefaultPopupText();
 					pt.setText("没有游戏记录,请重新开始游戏!");
@@ -269,6 +271,9 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				}
 				break;
 			case 1:			//开始游戏
+				 //加载成就信息
+		    	SaveGameRecord sgr = new SaveGameRecord(Game.getInstance());
+				sgr.loadAttainment();
 				UserData.loadData();
 				isNewGame = true;
 				pm.queryProps();
@@ -288,6 +293,9 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				openShop();
 				break;
 			case 4:
+				 //加载成就信息
+		    	SaveGameRecord gr = new SaveGameRecord(Game.getInstance());
+				gr.loadAttainment();
 				openAchichment();
 				break;
 			case 5:
@@ -778,7 +786,6 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
      * 打开成就
      */
     public void openAchichment(){
-    	
     	push2Stack(new Achichment());
     }
     /**

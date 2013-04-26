@@ -61,7 +61,7 @@ public class SysMenu implements UiObject {
 					pt.setText("保存成功!");
 					pt.popup();
 				}
-				record.saveScore();  //保存积分
+				record.saveAttainment();  //保存成就
 				Game.getInstance().pm.sysProps();
 				Game.getInstance().backMainMenu();
 				break;
