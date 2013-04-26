@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-MIDlet-Version: 1.0.0
-MIDlet-Vendor: MIDlet Suite Vendor
-MIDlet-Name: itvgame-common MIDlet Suite
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.0
-

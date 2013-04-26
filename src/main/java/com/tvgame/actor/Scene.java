@@ -919,6 +919,8 @@ public class Scene {
 									node.setNullSpace();
 								}
 								setCurNodeActor(createNewActor(synthesisType), type_fit);
+								UserData.updateAchi(synthesisType);
+								UserData.printAchi();
 								addScoreWithFit();
 							}else{
 								//Õý³£·ÅÖÃ

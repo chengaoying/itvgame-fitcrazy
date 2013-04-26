@@ -13,6 +13,7 @@ public class Resources {
     //动画资源列表 (data.spx|image.png)
 
 	public  static final byte SPRITE_item_01 = 0;
+	
 	public  static final byte SPRITE_item_02 = 1;
 	public  static final byte SPRITE_item_03 = 2;
 	public  static final byte SPRITE_item_04 = 3;
@@ -21,12 +22,15 @@ public class Resources {
 	public  static final byte SPRITE_item_07 = 6;
 	public  static final byte SPRITE_item_08 = 7;
 	public  static final byte SPRITE_item_09 = 8;
+	
 	public  static final byte SPRITE_item_10 = 9;
 	public  static final byte SPRITE_item_11 = 10;
+	
 	public  static final byte SPRITE_item_12 = 11;
 	public  static final byte SPRITE_item_13 = 12;
 	public  static final byte SPRITE_item_14 = 13;
 	public  static final byte SPRITE_item_15 = 14;
+	
 	public  static final byte SPRITE_item_16 = 15;
 	public  static final byte SPRITE_explode  = 16;
 	public  static final byte SPRITE_BOMB    = 17;
@@ -183,6 +187,21 @@ public class Resources {
     
     public static final int IMG_ID_SHOP = 58;
     public static final int IMG_ID_RANKING = 59;
+    
+    public static int IMG_ID_ACHI_TITLE_1 = 60;
+    public static int IMG_ID_ACHI_TITLE_2 = 61;
+    public static int IMG_ID_ACHI_BG = 62;
+    public static int IMG_ID_ACHI_BRONZE_MEDAL = 63;
+    public static int IMG_ID_ACHI_GOLD_MEDAL = 64;
+    public static int IMG_ID_ACHI_INFO_BG = 65;
+    public static int IMG_ID_ACHI_INFO_DESC = 66;
+    public static int IMG_ID_ACHI_LEFT_1 = 67;
+    public static int IMG_ID_ACHI_LEFT_2 = 68;
+    public static int IMG_ID_ACHI_MAIN_TITLE = 69;
+    public static int IMG_ID_ACHI_RIGHT_1 = 70;
+    public static int IMG_ID_ACHI_RIGHT_2 = 71;
+    public static int IMG_ID_ACHI_SILVER_MEDAL = 72;
+    
     public static final String[] img_file_name = {
     	"botbar.png", 
     	"cg_logo01.png",
@@ -245,6 +264,20 @@ public class Resources {
     	
     	"shop/shop.png",
     	"ranking/rank.png",
+    	
+    	"achi/achi_title1.png",
+    	"achi/achi_title2.png",
+    	"achi/bg.jpg",
+    	"achi/bronze_medal.png",
+    	"achi/gold_medal.png",
+    	"achi/info_bg.png",
+    	"achi/info_desc.png",
+    	"achi/left_1.png",
+    	"achi/left_2.png",
+    	"achi/main_title.png",
+    	"achi/right_1.png",
+    	"achi/right_2.png",
+    	"achi/silver_medal.png",
     };
     
     static final Image[] resList = new Image[100];

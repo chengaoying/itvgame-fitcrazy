@@ -16,7 +16,7 @@ public class Rank implements UiObject {
 
 	public void draw(Graphics g) {
 		g.drawImage(Resources.loadImage(Resources.IMG_ID_RANKING), 0, 0, 20);
-		String myRanking = "0";
+		String myRanking = "";
 		String myScore = "";
 		if(Game.getInstance().rankList != null && Game.getInstance().rankList.length > 0){
 			Game.getInstance().setFont(15, true, g);

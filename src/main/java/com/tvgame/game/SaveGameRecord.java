@@ -1,14 +1,12 @@
 package com.tvgame.game;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Date;
 
 import com.tvgame.actor.UserData;
-
+import cn.ohyeah.itvgame.model.GameAttainment;
 import cn.ohyeah.itvgame.model.GameRecord;
 import cn.ohyeah.stb.game.ServiceWrapper;
 import cn.ohyeah.stb.util.DateUtil;
@@ -28,6 +26,21 @@ public class SaveGameRecord {
 		int month = DateUtil.getMonth(date);
 	    recordId = year*100+(month+1);
 	    attainmentId = year*100+(month+1);
+	}
+	
+	/**
+	 * 保存积分
+	 */
+	public void saveScore(){
+		ServiceWrapper sw = game.getServiceWrapper();
+		GameAttainment ga = sw.readAttainment(attainmentId);
+		if((ga==null && UserData.getScore()>0) || (ga!=null && UserData.getScore()>ga.getScores())){
+			GameAttainment attainment = new GameAttainment();
+			attainment.setAttainmentId(attainmentId);
+			attainment.setScores(UserData.getScore());
+			attainment.setRemark("游戏积分");
+			sw.saveAttainment(attainment);
+		}
 	}
 	
 	/*保存游戏记录*/
@@ -62,7 +75,6 @@ public class SaveGameRecord {
 					e.printStackTrace();
 				}
 			}
-			
 		}
 	}
 	
