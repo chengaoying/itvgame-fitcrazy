@@ -202,6 +202,21 @@ public class Resources {
     public static int IMG_ID_ACHI_RIGHT_2 = 71;
     public static int IMG_ID_ACHI_SILVER_MEDAL = 72;
     
+    public static int IMG_ID_GUIDE_DIALOG1 = 73;
+    public static int IMG_ID_GUIDE_DIALOG2 = 74;
+    public static int IMG_ID_GUIDE_DIALOG3 = 75;
+    public static int IMG_ID_GUIDE_DIALOG4 = 76;
+    public static int IMG_ID_GUIDE_DIALOG5 = 77;
+    public static int IMG_ID_GUIDE_DIALOG6 = 78;
+    public static int IMG_ID_GUIDE_DIALOG7 = 79;
+    public static int IMG_ID_GUIDE_ARROWS = 80;
+    public static int IMG_ID_GUIDE_TEXTBOX1 = 81;
+    public static int IMG_ID_GUIDE_TEXTBOX2 = 82;
+    public static int IMG_ID_GUIDE_INFO1 = 83;
+    public static int IMG_ID_GUIDE_INFO2 = 84;
+    public static int IMG_ID_GUIDE_DIALOG0 = 85;
+    public static int IMG_ID_GUIDE_DIALOG8 = 86;
+    
     public static final String[] img_file_name = {
     	"botbar.png", 
     	"cg_logo01.png",
@@ -262,8 +277,8 @@ public class Resources {
     	"fee_icon.png",
     	"cg_logo03.png",
     	
-    	"shop/shop.png",
-    	"ranking/rank.png",
+    	"shop/shop.jpg",
+    	"ranking/rank.jpg",
     	
     	"achi/achi_title1.png",
     	"achi/achi_title2.png",
@@ -278,6 +293,21 @@ public class Resources {
     	"achi/right_1.png",
     	"achi/right_2.png",
     	"achi/silver_medal.png",
+    	
+    	"guide/dialog1.png",
+    	"guide/dialog2.png",
+    	"guide/dialog3.png",
+    	"guide/dialog4.png",
+    	"guide/dialog5.png",
+    	"guide/dialog6.png",
+    	"guide/dialog7.png",
+    	"guide/arrows.png",
+    	"guide/textbox1.png",
+    	"guide/textbox2.png",
+    	"guide/info1.png",
+    	"guide/info2.png",
+    	"guide/dialog0.png",
+    	"guide/dialog8.png",
     };
     
     static final Image[] resList = new Image[100];

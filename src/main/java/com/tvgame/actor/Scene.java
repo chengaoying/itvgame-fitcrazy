@@ -471,8 +471,8 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(127);
 				} else {
-					/*Game.getInstance().openMall();
-					Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");*/
+					//Game.getInstance().openMall();
+					//Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
 					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					pc.setText("道具数量为0,是否去购买?");
 					if(pc.popup()==0){
