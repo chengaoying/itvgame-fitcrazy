@@ -10,6 +10,7 @@ import cn.ohyeah.stb.ui.PopupConfirm;
 
 import com.tvgame.actor.Resources;
 import com.tvgame.constant.Const;
+import com.tvgame.ui.Tip;
 import com.tvgame.ui.UiObject;
 import com.tvgame.util.GraphicsUtil;
 import com.tvgame.util.TextView;
@@ -119,11 +120,12 @@ public class Shop implements UiObject{
 				//System.out.println("propId:"+propId);
 				//System.out.println("propPrice:"+Game.pm.getPriceById(propId));
 				//System.out.println("propName:"+Game.pm.getNameById(propId));
-				PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+				/*PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 				pc.setText("确定要购买吗?");
-				if(pc.popup()==0){
+				if(pc.popup()==0){*/
+				//Game.getInstance().push2Stack(new Tip("您将购买道具"+Game.pm.getNameById(propId)));
 					Game.pm.buyProp(propId, 1);
-				}
+				//}
 			}
 			
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){

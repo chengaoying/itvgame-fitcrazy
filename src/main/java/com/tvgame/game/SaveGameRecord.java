@@ -60,7 +60,7 @@ public class SaveGameRecord {
 			if(ga != null && ga.getScores() >= UserData.getScore()){
 				attainment.setScores(ga.getScores());
 			}else{
-				attainment.setScores(UserData.getScore());
+				attainment.setScores(UserData.getMaxScore());
 			}
 			attainment.setAttainmentId(attainmentId);
 			attainment.setScores(UserData.getScore());
@@ -110,6 +110,7 @@ public class SaveGameRecord {
 			for(int i = 0 ;i<UserData.nums.length;i++){
 				UserData.nums[i] = dou.readInt();
 			}
+			UserData.setMaxScore(ga.getScores());
 			UserData.printAchi();
 		}catch(Exception e){
 			System.out.println("读取游戏成就失败，原因："+e.getMessage());

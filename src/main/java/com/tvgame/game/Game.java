@@ -37,6 +37,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     public int lastState2;
     public static PropManager pm;
     public GameRanking[] rankList;
+    public Graphics gs;
     
     //音效
     //public MusicMaster  musicMasterPIG = new MusicMaster();
@@ -146,6 +147,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     }
 
     public void paint(Graphics g) {
+    	gs = g;
         if (isLoading) {
             drawLoading(g);
         } else {
@@ -259,9 +261,10 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				boolean result = r.loadRecord();
 				r.loadAttainment();
 				if(!result){
-					PopupText pt = UIResource.getInstance().buildDefaultPopupText();
+					/*PopupText pt = UIResource.getInstance().buildDefaultPopupText();
 					pt.setText("没有游戏记录,请重新开始游戏!");
-					pt.popup();
+					pt.popup();*/
+					showTip("没有游戏记录,请重新开始游戏!");
 					selectIndex = 1;
 				}else{
 					pm.queryProps();
@@ -291,6 +294,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				//openHelp();
 				pm.queryProps();
 				openShop();
+				//new Thread(new Shop(gs)).start();
 				break;
 			case 4:
 				 //加载成就信息
@@ -760,7 +764,6 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     	//商城界面暂时用Tip演示
     	push2Stack(new Mall());
     }
-    
     /**
      * 打开商城()
      */

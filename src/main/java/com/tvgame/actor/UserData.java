@@ -83,6 +83,9 @@ public class UserData {
 	 */
 	public static int mScore2 = 0;
 	
+	/*最高得分*/
+	public static int maxScore = 0;
+	
 	/**
 	 * 当前所在场景的ID
 	 */
@@ -223,6 +226,14 @@ public class UserData {
 		System.out.println("---------------------------");
 	}
 	
+	public static int getMaxScore() {
+		return maxScore;
+	}
+
+	public static void setMaxScore(int maxScore) {
+		UserData.maxScore = maxScore;
+	}
+
 	public static int[] getNums() {
 		return nums;
 	}
@@ -333,6 +344,9 @@ public class UserData {
 		setScore(0);
 		//积分2
 		setScore2(0);
+		
+		setMaxScore(0);
+		
 		//步数
 		setStep(120);
 

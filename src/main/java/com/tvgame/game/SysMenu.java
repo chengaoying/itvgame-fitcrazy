@@ -52,15 +52,15 @@ public class SysMenu implements UiObject {
 				break;
 			case 3://返回主菜单的时保存且提交游戏分数
 				//保存游戏 
-				PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-				pc.setText("是否保存游戏记录!");
+				//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+				//pc.setText("是否保存游戏记录!");
 				SaveGameRecord record = new SaveGameRecord(Game.getInstance());
-				if(pc.popup() == 0){
+				//if(pc.popup() == 0){
 					record.saveRecord();
-					PopupText pt = UIResource.getInstance().buildDefaultPopupText();
-					pt.setText("保存成功!");
-					pt.popup();
-				}
+					//PopupText pt = UIResource.getInstance().buildDefaultPopupText();
+					//pt.setText("保存成功!");
+					//pt.popup();
+				//}
 				record.saveAttainment();  //保存成就
 				Game.getInstance().pm.sysProps();
 				Game.getInstance().backMainMenu();

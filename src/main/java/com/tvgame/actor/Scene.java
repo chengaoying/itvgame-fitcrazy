@@ -473,11 +473,12 @@ public class Scene {
 				} else {
 					//Game.getInstance().openMall();
 					//Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM2)) {
 				int nums = Game.getInstance().pm.getPropNumsById(128);
@@ -486,11 +487,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(128);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM3)) {
 				int nums = Game.getInstance().pm.getPropNumsById(129);
@@ -499,11 +501,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(129);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM4)) {
 				int nums = Game.getInstance().pm.getPropNumsById(130);
@@ -512,11 +515,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(130);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM5)) {
 				int nums = Game.getInstance().pm.getPropNumsById(131);
@@ -525,11 +529,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(131);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM6)) {
 				int nums = Game.getInstance().pm.getPropNumsById(132);
@@ -538,11 +543,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(132);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM7)) {
 				int nums = Game.getInstance().pm.getPropNumsById(133);
@@ -560,11 +566,12 @@ public class Scene {
 					}
 					Game.getInstance().pm.reducePropNum(133);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
 				int nums = Game.getInstance().pm.getPropNumsById(134);
@@ -573,11 +580,12 @@ public class Scene {
 					ckeckSynthesisImp();
 					Game.getInstance().pm.reducePropNum(134);
 				} else {
-					PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
-					pc.setText("道具数量为0,是否去购买?");
-					if(pc.popup()==0){
-						Game.getInstance().openShop();
-					}
+					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+					//pc.setText("道具数量为0,是否去购买?");
+					Game.getInstance().showTip("道具不够，请到商城购买");
+					//if(pc.popup()==0){
+						//Game.getInstance().openShop();
+					//}
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
 				Game.getInstance().openHelp();
