@@ -731,11 +731,12 @@ public class Text {
 
     /**
 	 * @param g
-	 *            Graphics
+	 * Graphics
 	 */
     public void typer(Graphics g) {
         g.setClip(displayX, displayY, displayW, displayH);
-        g.setFont(f);
+        //g.setFont(f);
+        Game.getInstance().setFont(12, false, g);
         g.setColor(fontColor);
         int tempY;
         for (int i = curRowID; i < curRowID + rowID; i++) {

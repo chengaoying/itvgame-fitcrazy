@@ -111,6 +111,7 @@ public class SaveGameRecord {
 				UserData.nums[i] = dou.readInt();
 			}
 			UserData.setMaxScore(ga.getScores());
+			System.out.println("maxScore:"+UserData.maxScore);
 			UserData.printAchi();
 		}catch(Exception e){
 			System.out.println("读取游戏成就失败，原因："+e.getMessage());

@@ -10,9 +10,9 @@ import cn.ohyeah.stb.ui.PopupConfirm;
 
 import com.tvgame.actor.Resources;
 import com.tvgame.constant.Const;
-import com.tvgame.ui.Tip;
 import com.tvgame.ui.UiObject;
 import com.tvgame.util.GraphicsUtil;
+import com.tvgame.util.PromptConfirm;
 import com.tvgame.util.TextView;
 
 public class Shop implements UiObject{
@@ -32,7 +32,7 @@ public class Shop implements UiObject{
 		if(x_index<2){
 			GraphicsUtil.drawRect(g, 79+(x_index*x), 185+(y_index*y), 59, 59, 3, 0xffff00);
 		}else{
-			GraphicsUtil.drawRect(g, 414, 389, 105, 44, 3, 0xff0000);
+			GraphicsUtil.drawRect(g, 414, 389, 105, 44, 3, 0xffff00);
 		}
 		g.setColor(0x000000);
 		for(int i=0;i<Game.pm.props.length;i++){
@@ -42,7 +42,7 @@ public class Shop implements UiObject{
 			g.drawString(price, mapx, mapy, 20);
 			g.drawString(nums, mapx, mapy+20, 20);
 		}
-		Game.getInstance().setFont(15, true, g);
+		Game.getInstance().setFont(15, false, g);
 		if(index < 9){
 			String des = Game.pm.props[index].getDesc();
 			String price = String.valueOf(Game.pm.props[index].getPrice()); 
@@ -116,16 +116,14 @@ public class Shop implements UiObject{
 				Recharge recharge = new Recharge(Game.getInstance());
 				recharge.recharge();
 			}else{
+				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
+				p.processShop();
 				int propId = Game.pm.props[index].getPropId();
-				//System.out.println("propId:"+propId);
-				//System.out.println("propPrice:"+Game.pm.getPriceById(propId));
-				//System.out.println("propName:"+Game.pm.getNameById(propId));
-				/*PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
+				PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 				pc.setText("确定要购买吗?");
-				if(pc.popup()==0){*/
-				//Game.getInstance().push2Stack(new Tip("您将购买道具"+Game.pm.getNameById(propId)));
+				if(pc.popup()==0){
 					Game.pm.buyProp(propId, 1);
-				//}
+				}
 			}
 			
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){

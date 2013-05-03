@@ -345,7 +345,7 @@ public class UserData {
 		//积分2
 		setScore2(0);
 		
-		setMaxScore(0);
+		//setMaxScore(0);
 		
 		//步数
 		setStep(120);
@@ -380,6 +380,9 @@ public class UserData {
 	public static void addScore(int score) {
 		mScore2 = mScore;
 		mScore += score;
+		if(maxScore < mScore){
+			maxScore = mScore;
+		}
 	}
 	/*public static void consumptionGold(int gold){
 		mGold -=gold;

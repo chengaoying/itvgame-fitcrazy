@@ -466,10 +466,15 @@ public class Scene {
 			else if (key.containsAndRemove(KeyCode.NUM1)) {
 				int nums = Game.getInstance().pm.getPropNumsById(127);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
-					Game.getInstance().showTip("兑换成功！");
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(127);
+					if(curActor.getType() != Actor.TYPE_炸弹){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
+						//Game.getInstance().showTip("兑换成功！");
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(127);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
+					
 				} else {
 					//Game.getInstance().openMall();
 					//Game.getInstance().showTip("龙币不足，兑换失败。请先充值！");
@@ -483,9 +488,13 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM2)) {
 				int nums = Game.getInstance().pm.getPropNumsById(128);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(128);
+					if(curActor.getType() != Actor.TYPE_魔法棒){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(128);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -497,9 +506,13 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM3)) {
 				int nums = Game.getInstance().pm.getPropNumsById(129);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(129);
+					if(curActor.getType() != Actor.TYPE_火把){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(129);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -511,9 +524,14 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM4)) {
 				int nums = Game.getInstance().pm.getPropNumsById(130);
 				if (nums > 0) {
-					UserData.addStep(250);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(130);
+					if(UserData.getStep()<150){
+						//UserData.addStep(150);
+						UserData.setStep(150);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(130);
+					}else{
+						Game.getInstance().showTip("步数已达到上限值");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -525,9 +543,13 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM5)) {
 				int nums = Game.getInstance().pm.getPropNumsById(131);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(131);
+					if(curActor.getType() != Actor.TYPE_发芽的种子){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(131);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -539,9 +561,13 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM6)) {
 				int nums = Game.getInstance().pm.getPropNumsById(132);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(132);
+					if(curActor.getType() != Actor.TYPE_菜头弟弟){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(132);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -558,7 +584,9 @@ public class Scene {
 						nodesToNodes(nodes, nodes2);
 						curActor = curActor2;
 						UserData.setScore(UserData.mScore2);
-						UserData.setStep(UserData.getStep()+1);
+						if(UserData.getStep()<150){
+							UserData.setStep(UserData.getStep()+1);
+						}
 						ckeckSynthesisImp();
 						isCanBackStep = false;
 					}else{
@@ -576,9 +604,13 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
 				int nums = Game.getInstance().pm.getPropNumsById(134);
 				if (nums > 0) {
-					Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
-					ckeckSynthesisImp();
-					Game.getInstance().pm.reducePropNum(134);
+					if(curActor.getType() != Actor.TYPE_菜头勇士){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
+						ckeckSynthesisImp();
+						Game.getInstance().pm.reducePropNum(134);
+					}else{
+						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
+					}
 				} else {
 					//PopupConfirm pc = UIResource.getInstance().buildDefaultPopupConfirm();
 					//pc.setText("道具数量为0,是否去购买?");
@@ -891,8 +923,8 @@ public class Scene {
 			// 猪
 			// 魔法棒子
 			if(UserData.getStep()<1){
-				Game.getInstance().openMall();
-				Game.getInstance().showTip("步数已经用完,请耐心等待,系统将会自动赠送少量的步数或者充值购买步数！");
+				//Game.getInstance().openMall();
+				Game.getInstance().showTip("步数已用完,你可以购买步数或等两分钟系统自动赠送");
 				return ;
 			}
 			boolean bOperate = false;
@@ -1284,7 +1316,7 @@ public class Scene {
 		int py = y-78;
 		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+45, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
 		px+= 138;
-		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+87, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
+		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getMaxScore()), "0123456789x", px+87, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
 		px+= 147;
 		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getStep()), "0123456789x", px+83, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 3,"x");
 		px+= 156;
@@ -1532,7 +1564,11 @@ public class Scene {
 	private void rewardStep(){
 		long curTime = System.currentTimeMillis();
 		if(curTime-lastRewardTime>120000){
-			UserData.addStep(3);
+			if(UserData.getStep()+3 < 120){
+				UserData.addStep(3);
+			}else{
+				UserData.setStep(120);
+			}
 			lastRewardTime = curTime;
 		}
 	}
