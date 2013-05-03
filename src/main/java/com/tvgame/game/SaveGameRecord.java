@@ -57,13 +57,12 @@ public class SaveGameRecord {
 			record = bout.toByteArray();
 			GameAttainment ga = sw.readAttainment(attainmentId);
 			GameAttainment attainment = new GameAttainment();
-			if(ga != null && ga.getScores() >= UserData.getScore()){
+			if(ga != null && ga.getScores() >= UserData.getMaxScore()){
 				attainment.setScores(ga.getScores());
 			}else{
 				attainment.setScores(UserData.getMaxScore());
 			}
 			attainment.setAttainmentId(attainmentId);
-			attainment.setScores(UserData.getScore());
 			attainment.setRemark("сно╥Ёи╬м");
 			attainment.setData(record);
 			sw.saveAttainment(attainment);

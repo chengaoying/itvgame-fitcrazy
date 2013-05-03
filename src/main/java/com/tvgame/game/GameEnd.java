@@ -15,7 +15,7 @@ import com.tvgame.util.GraphicsUtil;
 import com.tvgame.util.Util;
 
 public class GameEnd implements UiObject {
-	public static String des = "祝贺您!\n经过多年的努力,阿兰妮部落的子民在您的精心照顾下,成功击退了来袭的恐龙,从此他们过上了幸福而又快乐的生活!阿兰妮部落的子民为了报答您,为您献上龙币来表达他们的感谢之情!";
+	public static String des = "祝贺您!\n经过多年的努力,阿兰妮部落的子民在您的精心照顾下,成功击退了来袭的恐龙,从此他们过上了幸福而又快乐的生活!";
 	byte count[];
 
 	public GameEnd() {
@@ -39,15 +39,15 @@ public class GameEnd implements UiObject {
 		Util.drawString(g, des, px + 40, py + 60, 20, 0, 400, '\n',
 				Const.bigFont);
 		// 绘制奖励金币
-		drawX(g, px + 40, py + 200, Actor.TYPE_神圣骑兵, count[0] * 5);
+		/*drawX(g, px + 40, py + 200, Actor.TYPE_神圣骑兵, count[0] * 5);
 		drawX(g, px - 200 + width, py + 200, Actor.TYPE_究极骑兵, count[1] * 10);
 		drawX(g, px + 40, py + 250, Actor.TYPE_08, count[2] * 20);
 		drawX(g, px - 200 + width, py + 250, Actor.TYPE_09, count[3] * 30);
-		drawX(g, px +40, py + 300, Actor.TYPE_超级宝箱, count[3] * 50);
+		drawX(g, px +40, py + 300, Actor.TYPE_超级宝箱, count[3] * 50);*/
 		
 		//总计
-		Util.draw3DString(g, "总计：", px + width - 150 , py + height -80 +10 -Const.FONT_H_HALF, GraphicsUtil.RIGHT_TOP, 0x0, 0xffffff);
-		drawAddGold(g, px + width -150,py + height -80, count[0] * 5 + count[1] * 10 + count[2] * 20 + count[3] * 30+count[4]*50);
+		/*Util.draw3DString(g, "总计：", px + width - 150 , py + height -80 +10 -Const.FONT_H_HALF, GraphicsUtil.RIGHT_TOP, 0x0, 0xffffff);
+		drawAddGold(g, px + width -150,py + height -80, count[0] * 5 + count[1] * 10 + count[2] * 20 + count[3] * 30+count[4]*50);*/
 		//确定键
     	Game.drawButton(g, px +(width>>1) , py + height-18);
 	}
