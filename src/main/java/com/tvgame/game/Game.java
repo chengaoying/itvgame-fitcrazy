@@ -26,6 +26,7 @@ import com.tvgame.ui.Box;
 import com.tvgame.ui.Tip;
 import com.tvgame.ui.UiObject;
 import com.tvgame.util.GraphicsUtil;
+import com.tvgame.util.TextView;
 import com.tvgame.util.Util;
 
 public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonListener*/ {
@@ -719,17 +720,30 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
     {
     	int px =60;
     	int py = (Const.HEIGHT_HALF>>1)-24;
-    	
+    	Game.getInstance().setFont(1, false, g);
     	for (int i = 0; i < 4; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
     				0, 77*i, 69, 77, 0, px, py+78*i, GraphicsUtil.LEFT_TOP);
+    		int propId = Game.pm.props[i].getPropId();
+    		int num = Game.getInstance().pm.getPropNumsById(propId);
+    		int col = g.getColor();
+    		g.setColor(0x000000);
+    		TextView.showSingleLineText(g, String.valueOf(num), px+49, py+78*i+44,20,15,1);
+    		g.setColor(col);
 		}
     	int px2 = Const.WIDTH-130;
     	int py2 = (Const.HEIGHT_HALF>>1)-24;
     	for (int i = 4; i < 8; i++) {
     		GraphicsUtil.drawRegion(g, Resources.loadImage(Resources.IMD_ID_FEE_ICON), 
     				0, 77*i, 69, 77, 0, px2, py2+78*(i-4), GraphicsUtil.LEFT_TOP);
+    		int propId = Game.pm.props[i].getPropId();
+    		int num = Game.getInstance().pm.getPropNumsById(propId);
+    		int col = g.getColor();
+    		g.setColor(0x000000);
+    		TextView.showSingleLineText(g, String.valueOf(num), px2+49, py2+78*(i-4)+44,20,15,1);
+    		g.setColor(col);
 		}
+    	Game.getInstance().setDefaultFont(g);
     }
     
     /**
