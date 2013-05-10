@@ -35,7 +35,10 @@ public class Achichment implements UiObject {
 				if(UserData.achi_list[i][j] && !UserData.achi_show[i][j]){
 					Game.getInstance().push2Stack(new Achi_GameTip(i,Integer.parseInt(Const.achi_info[i][j][2])));
 					UserData.achi_show[i][j] = true;
-					Game.getInstance().pm.addPropNum(Integer.parseInt(Const.achi_info[i][j][2]));
+					int id = Integer.parseInt(Const.achi_info[i][j][2]);
+					for(int k=0;k<Const.achi_props[id].length;k++){
+						Game.getInstance().pm.addPropNum(Const.achi_props[id][k]);
+					}
 					Game.getInstance().pm.printInfo();
 				}
 			}
@@ -100,20 +103,27 @@ public class Achichment implements UiObject {
 			info_bgY += info_bgH;
 		}
 		
-		
-		
 		Image left_1 = Resources.loadImage(Resources.IMG_ID_ACHI_LEFT_1);
 		Image left_2 = Resources.loadImage(Resources.IMG_ID_ACHI_LEFT_2);
 		Image right_1 = Resources.loadImage(Resources.IMG_ID_ACHI_RIGHT_1);
 		Image right_2 = Resources.loadImage(Resources.IMG_ID_ACHI_RIGHT_2);
-		int leftX = 3, rigthX = Const.WIDTH - right_1.getWidth() - 3;
-		int leftY = Const.HEIGHT/2 - left_1.getHeight()/2;
+		int w = right_1.getWidth(), h = right_1.getHeight();
+		int leftX = 3, rigthX = Const.WIDTH - w - 3;
+		int leftY = Const.HEIGHT/2 - h/2;
 		if(isRight){
+			GraphicsUtil.drawRect(g, rigthX, leftY, w, h, 3, 0xff0000);
+		}else{
+			GraphicsUtil.drawRect(g, leftX, leftY, w, h, 3, 0xff0000);
+		}
+		if(pageIndex<=0){
 			GraphicsUtil.drawImage(g, leftX, leftY, 20, left_2);
 			GraphicsUtil.drawImage(g, rigthX, leftY, 20, right_1);
-		}else{
+		}else if(pageIndex>=pageCount-1){
 			GraphicsUtil.drawImage(g, leftX, leftY, 20, left_1);
 			GraphicsUtil.drawImage(g, rigthX, leftY, 20, right_2);
+		}else{
+			GraphicsUtil.drawImage(g, leftX, leftY, 20, left_1);
+			GraphicsUtil.drawImage(g, rigthX, leftY, 20, right_1);
 		}
 		
 		Image main_title = Resources.loadImage(Resources.IMG_ID_ACHI_MAIN_TITLE);
@@ -138,6 +148,8 @@ public class Achichment implements UiObject {
 			}
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
 			Game.getInstance().popStack();
+		}else if(key.containsAndRemove(KeyCode.NUM9)){
+			Game.getInstance().openShop();
 		}
 	}
 }

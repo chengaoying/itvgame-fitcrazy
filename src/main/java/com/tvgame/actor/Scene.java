@@ -578,7 +578,7 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
-				Game.getInstance().openHelp();
+				Game.getInstance().openShop();
 			}
 		}
 		rewardStep();
@@ -1522,13 +1522,13 @@ public class Scene {
 	 */
 	public long lastRewardTime = System.currentTimeMillis();
 	/**
-	 * 每2分钟回复三步
+	 * 每30秒回复一步
 	 */
 	private void rewardStep(){
 		long curTime = System.currentTimeMillis();
-		if(curTime-lastRewardTime>120000){
-			if(UserData.getStep()+3 < 150){
-				UserData.addStep(3);
+		if(curTime-lastRewardTime>30000){
+			if(UserData.getStep()+1 < 150){
+				UserData.addStep(1);
 			}else{
 				UserData.setStep(150);
 			}

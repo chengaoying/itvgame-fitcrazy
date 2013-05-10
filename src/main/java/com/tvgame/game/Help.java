@@ -23,7 +23,9 @@ public class Help implements UiObject {
 	public void update(KeyState key) {
     	if(key.containsAndRemove(KeyCode.OK)){
 			Game.getInstance().popStack();
-    	}
+    	}else if(key.containsAndRemove(KeyCode.NUM9)){
+			Game.getInstance().openShop();
+		}
 	}
 
 }

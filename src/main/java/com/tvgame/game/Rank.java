@@ -45,7 +45,9 @@ public class Rank implements UiObject {
 			Game.getInstance().popStack();
     	}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
     		Game.getInstance().popStack();
-    	}
+    	}else if(key.containsAndRemove(KeyCode.NUM9)){
+			Game.getInstance().openShop();
+		}
 	}
 
 }

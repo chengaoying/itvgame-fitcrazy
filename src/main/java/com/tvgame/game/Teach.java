@@ -150,6 +150,8 @@ public class Teach implements UiObject{
 			}
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
 			teach_index = 9;
+		}else if(key.containsAndRemove(KeyCode.NUM9)){
+			Game.getInstance().openShop();
 		}
 	}
 	

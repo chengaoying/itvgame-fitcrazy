@@ -293,7 +293,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				break;
 			case 3:
 				//openHelp();
-				pm.queryProps();
+				//pm.queryProps();
 				openShop();
 				//new Thread(new Shop(gs)).start();
 				break;
@@ -312,7 +312,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			isExit = true;
 			exit = true;
 		} else if (keyState.containsAndRemove(KeyCode.NUM9)) {
-			Game.getInstance().openHelp();
+			Game.getInstance().openShop();
 		}
 	}
     /***
@@ -782,6 +782,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
      * 打开商城()
      */
     public void openShop(){
+    	pm.queryProps();
     	push2Stack(new Shop());
     }
     

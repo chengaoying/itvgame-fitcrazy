@@ -27,7 +27,7 @@ public class SaveGameRecord {
 	    int year = DateUtil.getYear(date);
 		int month = DateUtil.getMonth(date);
 	    recordId = year*100+(month+1);
-	    attainmentId = year*100+(month+1);
+	    attainmentId = year*100/*+(month+1)*/;
 	}
 	
 	/**
@@ -110,7 +110,6 @@ public class SaveGameRecord {
 				UserData.nums[i] = dou.readInt();
 			}
 			UserData.setMaxScore(ga.getScores());
-			System.out.println("maxScore:"+UserData.maxScore);
 			UserData.printAchi();
 		}catch(Exception e){
 			System.out.println("读取游戏成就失败，原因："+e.getMessage());

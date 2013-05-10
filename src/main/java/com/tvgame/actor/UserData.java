@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.Vector;
 
 import cn.ohyeah.itvgame.model.GameRecord;
+import cn.ohyeah.stb.util.DateUtil;
 
 import com.tvgame.constant.Const;
 import com.tvgame.game.Achichment;
@@ -56,18 +57,6 @@ public class UserData {
 		
 	};
 
-	/*public static Vector rankList = new Vector();
-	public static Vector getRankList() {
-		return rankList;
-	}
-
-	public static void setRankList(Vector rankList) {
-		UserData.rankList = rankList;
-	}*/
-	/**
-	 * 龙币
-	 */
-	//public static int mGold = 100;
 	/**
 	 * 当局游戏的步数
 	 */
@@ -94,6 +83,11 @@ public class UserData {
 	 * 存放地图数据
 	 */
 	public static byte mSceneData[];
+	
+	/**
+	 * 保存游戏记录的时间
+	 */
+	public static long time;
 	
 	/**
 	 * 道具生成器类型
@@ -224,6 +218,8 @@ public class UserData {
 			System.out.println("成就"+i+"是否显示,依次铜,银,金:" + achi_show[i][0] + ", " + achi_show[i][1] + ", " + achi_show[i][2]);
 		}
 		System.out.println("---------------------------");
+		
+		System.out.println("maxScore:"+maxScore);
 	}
 	
 	public static int getMaxScore() {
@@ -234,6 +230,10 @@ public class UserData {
 		UserData.maxScore = maxScore;
 	}
 
+	public static void setTime(long t){
+		time = t;
+	}
+	
 	public static int[] getNums() {
 		return nums;
 	}
@@ -309,6 +309,8 @@ public class UserData {
 				//步数
 				setStep(dou.readInt());
 				setB_show_teach(dou.readBoolean());
+				setTime(dou.readLong());
+				computeSteps();
 				setScore(gr.getScores());
 				dou.close();
 				ous.close();
@@ -317,6 +319,24 @@ public class UserData {
 				e.printStackTrace();
 			}
 		//}
+	}
+	
+	private static void computeSteps(){
+		long t1 = System.currentTimeMillis();
+		long hour = time/3600000;
+		long hour2 = t1/3600000;
+		/*long hour = time/60000;
+		long hour2 = t1/60000;*/
+		long h = hour2 - hour;
+		System.out.println("step:"+getStep());
+		setStep((int)(getStep()+h*10));
+		if(getStep() > 150){
+			setStep(150);
+		}
+		System.out.println("t1:"+t1);
+		System.out.println("save time:"+time);
+		System.out.println("hours:"+h);
+		System.out.println("add step:"+h*10);
 	}
 	
 	//载入重新开始游戏的数据
@@ -351,6 +371,8 @@ public class UserData {
 		setStep(120);
 
 		setB_show_teach(true);
+		
+		setTime(0);
 	}
 	
 	/**
@@ -419,6 +441,7 @@ public class UserData {
 			//步数
 			dou.writeInt(getStep());
 			dou.writeBoolean(b_show_teach);
+			dou.writeLong(System.currentTimeMillis());
 			
 			printInfo();
 		} catch (IOException e) {
@@ -436,6 +459,7 @@ public class UserData {
 		System.out.println(getScore());
 		System.out.println(getStep());
 		System.out.println(b_show_teach);
+		System.out.println("save attainment time:"+time);
 	}
 	
 	//场景地表数据
