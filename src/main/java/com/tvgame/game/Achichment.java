@@ -78,15 +78,15 @@ public class Achichment implements UiObject {
 				GraphicsUtil.drawImage(g, medalX, medalY, 20, Resources.IMG_ID_ACHI_SILVER_MEDAL);
 				medalX += 65;
 				num = Integer.parseInt(Const.achi_info[index+i][2][1]) - UserData.getNums()[index+i];
-				achi_desc = "还差"+num+Const.achi_info[index+i][2][4];
+				achi_desc = "还差"+num+Const.achi_info[index+i][2][4]+Const.achi_info[i][0][5];
 			}else if(UserData.achi_list[i+index][0]){
 				GraphicsUtil.drawImage(g, medalX, medalY, 20, Resources.IMG_ID_ACHI_BRONZE_MEDAL);
 				medalX += 65;
 				num = Integer.parseInt(Const.achi_info[index+i][1][1]) - UserData.getNums()[index+i];
-				achi_desc = "还差"+num+Const.achi_info[index+i][1][4];
+				achi_desc = "还差"+num+Const.achi_info[index+i][1][4]+Const.achi_info[i][0][5];
 			}else{
 				num = Integer.parseInt(Const.achi_info[index+i][0][1]) - UserData.getNums()[index+i];
-				achi_desc = "还差"+num+Const.achi_info[index+i][0][4];
+				achi_desc = "还差"+num+Const.achi_info[index+i][0][4]+Const.achi_info[i][0][5];
 			}
 			
 			int achi_nameX = info_bgX + 100, achi_nameY = info_bgY + 10;

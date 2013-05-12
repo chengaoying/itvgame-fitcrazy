@@ -458,9 +458,8 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.OK)) {
 				doKeyFire();
 			} else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
-				// 2012-11-22游戏中使用0键或者返回键 都可以打开游戏菜单
+				timespace = time;  
 				Game.getInstance().openSysMenu();
-				// Game.getInstance().backMainMenu();
 			} 
 			// 付费道具 快捷键
 			else if (key.containsAndRemove(KeyCode.NUM1)) {
@@ -1282,7 +1281,8 @@ public class Scene {
 		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getScore()), "0123456789x", px+87, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 5,"x");
 		px+= 147;
 		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(UserData.getStep()), "0123456789x", px+83, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 3,"x");
-		px+= 156;
+		GraphicsUtil.drawString(g, Resources.loadImage(Resources.IMG_ID_NO), String.valueOf(30-Scene.time/1000), "0123456789x", px+145, py+4, 15, 27, GraphicsUtil.TRANS_NONE, 1, 2,"x");
+		px+= 195;
 		//显示当前可操作的道具
 		curActor.paint(g, px+47, py+17);
 //		curActor.updata();
@@ -1520,13 +1520,16 @@ public class Scene {
 	/**
 	 * 
 	 */
-	public long lastRewardTime = System.currentTimeMillis();
+	public static long lastRewardTime = System.currentTimeMillis();
+	public long curTime;
+	public static long time, timespace;
 	/**
 	 * 每30秒回复一步
 	 */
 	private void rewardStep(){
-		long curTime = System.currentTimeMillis();
-		if(curTime-lastRewardTime>30000){
+		curTime = System.currentTimeMillis();
+		time = curTime-lastRewardTime;
+		if(time>30000){
 			if(UserData.getStep()+1 < 150){
 				UserData.addStep(1);
 			}else{

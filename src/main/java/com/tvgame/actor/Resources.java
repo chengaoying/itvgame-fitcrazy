@@ -216,6 +216,7 @@ public class Resources {
     public static int IMG_ID_GUIDE_INFO2 = 84;
     public static int IMG_ID_GUIDE_DIALOG0 = 85;
     public static int IMG_ID_GUIDE_DIALOG8 = 86;
+    public static int IMG_ID_GAMEEND_ITEMLIST = 87;
     
     public static final String[] img_file_name = {
     	"botbar.png", 
@@ -308,6 +309,7 @@ public class Resources {
     	"guide/info2.png",
     	"guide/dialog0.png",
     	"guide/dialog8.png",
+    	"itemList.png",
     };
     
     static final Image[] resList = new Image[100];

@@ -9,6 +9,7 @@ import cn.ohyeah.stb.ui.PopupConfirm;
 import cn.ohyeah.stb.ui.PopupText;
 
 import com.tvgame.actor.Resources;
+import com.tvgame.actor.Scene;
 import com.tvgame.actor.UserData;
 import com.tvgame.constant.Const;
 import com.tvgame.ui.UiObject;
@@ -42,6 +43,7 @@ public class SysMenu implements UiObject {
 			switch(selectIndex){
 			case 0:
 				//∑µªÿ”Œœ∑
+				Scene.lastRewardTime = System.currentTimeMillis() - Scene.time;
 				break;
 			case 1:
 				//∞Ô÷˙

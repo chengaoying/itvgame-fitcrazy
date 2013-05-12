@@ -21,11 +21,11 @@ public class Achi_GameTip implements UiObject{
 	
 	private int i;
 	private long sTime, eTime ;
-	private int propId;
+	//private int propId;
 	
 	public Achi_GameTip(int i, int j){
 		this.i = i;
-		this.propId = j;
+		//this.propId = j;
 		sTime = System.currentTimeMillis()/3000;
 	}
 
@@ -44,7 +44,7 @@ public class Achi_GameTip implements UiObject{
 		GraphicsUtil.drawImage(g, achiX, achiY, 20, achi);
 		
 		String achi_name = Const.achi_info[i][0][0];
-		String achi_desc = "恭喜你获得了一个"+Game.getInstance().pm.getPropById(propId).getName()+"，";
+		String achi_desc = "恭喜你获得了一个"+Const.achi_info[i][0][5]+"，";
 		int num;
 		int medalX = info_bgX + 282, medalY = info_bgY + 2;
 		if(UserData.achi_list[i][2]){
