@@ -47,6 +47,19 @@ public class PropManager{
 		ServiceWrapper sw = engine.getServiceWrapper();
 		Prop[] ps = sw.queryGamePropList();
 		if(ps == null){
+			props = new PlayerProp[8];
+			System.out.println("创建道具数据并初始化道具信息,size:"+props.length);
+			for(int j=0;j<props.length;j++){
+				PlayerProp prop = new PlayerProp();
+				prop.setPropId(j);
+				prop.setName("test");
+				prop.setPrice(0);
+				prop.setId(j);
+				prop.setNums(0);
+				prop.setDesc("test");
+				prop.setFeeCode(0);
+				props[j] = prop;
+			}
 			return;
 		}
 		props = new PlayerProp[ps.length];
