@@ -346,7 +346,7 @@ public class UserData {
 		curRow = 0;
 		curActorType = 0;
 		
-		for(int i = 0 ;i<achi_list.length;i++){
+		/*for(int i = 0 ;i<achi_list.length;i++){
 			achi_list[i][0] = false;
 			achi_list[i][1] = false;
 			achi_list[i][2] = false;
@@ -358,7 +358,7 @@ public class UserData {
 		}
 		for(int i = 0 ;i<nums.length;i++){
 			nums[i] = 0;
-		}
+		}*/
 		
 		//»ý·Ö
 		setScore(0);

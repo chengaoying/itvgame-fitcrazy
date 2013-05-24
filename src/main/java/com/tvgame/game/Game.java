@@ -259,8 +259,8 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			switch (selectIndex) {
 			case 0:  		//继续游戏
 				SaveGameRecord r = new SaveGameRecord(Game.getInstance());
-				boolean result = r.loadRecord();
 				r.loadAttainment();
+				boolean result = r.loadRecord();
 				if(!result){
 					/*PopupText pt = UIResource.getInstance().buildDefaultPopupText();
 					pt.setText("没有游戏记录,请重新开始游戏!");
@@ -292,9 +292,9 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				openRank();
 				break;
 			case 3:
-				//openHelp();
+				openHelp();
 				//pm.queryProps();
-				openShop();
+				//openShop();
 				//new Thread(new Shop(gs)).start();
 				break;
 			case 4:
@@ -312,6 +312,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			isExit = true;
 			exit = true;
 		} else if (keyState.containsAndRemove(KeyCode.NUM9)) {
+			//Game.getInstance().pm.sysProps();
 			Game.getInstance().openShop();
 		}
 	}

@@ -97,28 +97,28 @@ public class PromptConfirm {
 			mapy = starty;
 			break;
 		case 1:
-			mapx = startx + offx;
-			mapy = starty;
+			mapx = startx;
+			mapy = starty + offy;
 			break;
 		case 2:
 			mapx = startx;
-			mapy = starty + offy;
+			mapy = starty + 2*offy;
 			break;
 		case 3:
-			mapx = startx + offx;
-			mapy = starty + offy;
+			mapx = startx;
+			mapy = starty + 3*offy;
 			break;
 		case 4:
-			mapx = startx;
-			mapy = starty + 2*offy;
+			mapx = startx + offx;
+			mapy = starty;
 			break;
 		case 5:
 			mapx = startx + offx;
-			mapy = starty + 2*offy;
+			mapy = starty + offy;
 			break;
 		case 6:
-			mapx = startx;
-			mapy = starty + 3*offy;
+			mapx = startx + offx;
+			mapy = starty + 2*offy;
 			break;
 		case 7:
 			mapx = startx + offx;

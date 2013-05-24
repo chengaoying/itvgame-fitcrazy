@@ -33,7 +33,7 @@ public class Achichment implements UiObject {
 		for(int i=0;i<UserData.achi_list.length;i++){
 			for(int j=0;j<UserData.achi_list[i].length;j++){
 				if(UserData.achi_list[i][j] && !UserData.achi_show[i][j]){
-					Game.getInstance().push2Stack(new Achi_GameTip(i,Integer.parseInt(Const.achi_info[i][j][2])));
+					Game.getInstance().push2Stack(new Achi_GameTip(i,-1/*Integer.parseInt(Const.achi_info[i][j][2])*/));
 					UserData.achi_show[i][j] = true;
 					int id = Integer.parseInt(Const.achi_info[i][j][2]);
 					for(int k=0;k<Const.achi_props[id].length;k++){
@@ -98,7 +98,7 @@ public class Achichment implements UiObject {
 			g.drawString(achi_name, achi_nameX, achi_nameY, 20);
 			
 			Game.getInstance().setFont(10, false, g);
-			TextView.showMultiLineText(g, achi_desc, 2, achi_descX, achi_descY, 180, 45);
+			TextView.showMultiLineText(g, achi_desc, 2, achi_descX, achi_descY, 200, 45);
 			
 			info_bgY += info_bgH;
 		}

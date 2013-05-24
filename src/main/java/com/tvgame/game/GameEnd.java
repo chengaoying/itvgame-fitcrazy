@@ -69,7 +69,8 @@ public class GameEnd implements UiObject {
 		if(rewardIndex >= 0){
 			str = "恭喜你，你的分数达到了"+rewardInfo[rewardIndex][1]+"，获得道具："+rewardInfo[rewardIndex][2];
 		}
-		TextView.showSingleLineText(g, str, px + 40, py+300);
+		//TextView.showSingleLineText(g, str, px + 40, py+300);
+		TextView.showMultiLineText(g, str, 2, px + 40, py+300, 400, 80);
 		g.setColor(col);
 		//确定键
     	Game.drawButton(g, px +(width>>1) , py + height-18);

@@ -7,6 +7,7 @@ import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.key.KeyState;
 
 import com.tvgame.actor.Resources;
+import com.tvgame.actor.Scene;
 import com.tvgame.actor.UserData;
 import com.tvgame.constant.Const;
 import com.tvgame.ui.UiObject;
@@ -89,9 +90,11 @@ public class Achi_GameTip implements UiObject{
 		eTime = System.currentTimeMillis()/3000;
 		if(key.containsAndRemove(KeyCode.OK)){
 			Game.getInstance().popStack();
+			Scene.lastRewardTime = System.currentTimeMillis() - Scene.time;
 		}
 		if(eTime - sTime >= 3){
 			Game.getInstance().popStack();
+			Scene.lastRewardTime = System.currentTimeMillis() - Scene.time;
 		}
 	}
 

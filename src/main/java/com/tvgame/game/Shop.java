@@ -61,28 +61,28 @@ public class Shop implements UiObject{
 			mapy = starty;
 			break;
 		case 1:
-			mapx = startx + offx;
-			mapy = starty;
+			mapx = startx;
+			mapy = starty + offy;
 			break;
 		case 2:
 			mapx = startx;
-			mapy = starty + offy;
+			mapy = starty + 2*offy;
 			break;
 		case 3:
-			mapx = startx + offx;
-			mapy = starty + offy;
+			mapx = startx;
+			mapy = starty + 3*offy;
 			break;
 		case 4:
-			mapx = startx;
-			mapy = starty + 2*offy;
+			mapx = startx + offx;
+			mapy = starty;
 			break;
 		case 5:
 			mapx = startx + offx;
-			mapy = starty + 2*offy;
+			mapy = starty + offy;
 			break;
 		case 6:
-			mapx = startx;
-			mapy = starty + 3*offy;
+			mapx = startx + offx;
+			mapy = starty + 2*offy;
 			break;
 		case 7:
 			mapx = startx + offx;
@@ -136,28 +136,24 @@ public class Shop implements UiObject{
 	private int getIndex(){
 		if(x_index == 2){
 			return 9;
-		}else if(y_index == 0){
-			if(x_index == 0){
+		}else if(x_index == 0){
+			if(y_index == 0){
 				return 0;
-			}else{
+			}else if(y_index == 1){
 				return 1;
-			}
-		}else if(y_index == 1){
-			if(x_index == 0){
+			}else if(y_index == 2){
 				return 2;
-			}else{
+			}else if(y_index == 3){
 				return 3;
 			}
-		}else if(y_index == 2){
-			if(x_index == 0){
+		}else if(x_index == 1){
+			if(y_index == 0){
 				return 4;
-			}else{
+			}else if(y_index == 1){
 				return 5;
-			}
-		}else if(y_index == 3){
-			if(x_index == 0){
+			}else if(y_index == 2){
 				return 6;
-			}else{
+			}else if(y_index == 3){
 				return 7;
 			}
 		}

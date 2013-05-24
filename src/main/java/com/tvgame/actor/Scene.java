@@ -459,6 +459,7 @@ public class Scene {
 				doKeyFire();
 			} else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
 				timespace = time;  
+				Game.getInstance().pm.sysProps();
 				Game.getInstance().openSysMenu();
 			} 
 			// 付费道具 快捷键
@@ -520,8 +521,8 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM5)) {
 				int nums = Game.getInstance().pm.getPropNumsById(131);
 				if (nums > 0) {
-					if(curActor.getType() != Actor.TYPE_菜头弟弟){
-						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
+					if(curActor.getType() != Actor.TYPE_发芽的种子){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
 						ckeckSynthesisImp();
 						Game.getInstance().pm.reducePropNum(131);
 					}else{
@@ -533,8 +534,8 @@ public class Scene {
 			} else if (key.containsAndRemove(KeyCode.NUM6)) {
 				int nums = Game.getInstance().pm.getPropNumsById(132);
 				if (nums > 0) {
-					if(curActor.getType() != Actor.TYPE_发芽的种子){
-						Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
+					if(curActor.getType() != Actor.TYPE_菜头弟弟){
+						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
 						ckeckSynthesisImp();
 						Game.getInstance().pm.reducePropNum(132);
 					}else{
@@ -569,15 +570,15 @@ public class Scene {
 						}
 						ckeckSynthesisImp();
 						isCanBackStep = false;
+						Game.getInstance().pm.reducePropNum(134);
 					}else{
 						Game.getInstance().showTip("只能后退一步");
 					}
-					Game.getInstance().pm.reducePropNum(134);
 				} else {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM9)) {
-				Game.getInstance().openShop();
+				entryShop();
 			}
 		}
 		rewardStep();
@@ -585,6 +586,7 @@ public class Scene {
 
 	private void entryShop() {
 		//Game.getInstance().showTip("道具不够，请到商城购买");
+		Game.getInstance().pm.sysProps();
 		Game.getInstance().openShop();
 	}
 
@@ -886,7 +888,7 @@ public class Scene {
 			// 魔法棒子
 			if(UserData.getStep()<1){
 				//Game.getInstance().openMall();
-				Game.getInstance().showTip("步数已用完,你可以购买步数或等两分钟系统自动赠送");
+				Game.getInstance().showTip("步数已用完,你可以购买步数或等30秒系统自动赠送");
 				return ;
 			}
 			boolean bOperate = false;
