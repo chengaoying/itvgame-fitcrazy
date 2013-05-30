@@ -20,7 +20,9 @@ public class Help implements UiObject {
 		Game.getInstance().drawBackGround(g,"°ïÖú");
 		//Util.drawString(g, Const.help_str, Const.WIDTH_HALF/4+40, Const.HEIGHT_HALF/4+60, 20, 0, 400, '\n', Const.bigFont);
 		g.setColor(0x000000);
+		Game.getInstance().setFont(10, false, g);
 		TextView.showMultiLineText(g, Const.help_str, 2, Const.WIDTH_HALF/4+40, Const.HEIGHT_HALF/4+60, 405, 265);
+		Game.getInstance().setDefaultFont(g);
 	}
 
 	public void update(KeyState key) {
