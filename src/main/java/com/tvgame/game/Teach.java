@@ -146,13 +146,29 @@ public class Teach implements UiObject{
 			else {
 				Game.getInstance().popStack();
 				UserData.setB_show_teach(false);
-				releaseTeachRes();
+				clear();
 			}
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
 			teach_index = 9;
 		}else if(key.containsAndRemove(KeyCode.NUM9)){
 			Game.getInstance().openShop();
 		}
+	}
+	
+	private void clear(){
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG0);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_INFO2);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG8);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG1);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_ARROWS);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_TEXTBOX1);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_INFO1);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG5);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG4);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG2);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG3);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG6);
+		Resources.releaseImage(Resources.IMG_ID_GUIDE_DIALOG7);
 	}
 	
 	public void releaseTeachRes()

@@ -43,12 +43,18 @@ public class Rank implements UiObject {
 	public void update(KeyState key) {
     	if(key.containsAndRemove(KeyCode.OK)){
 			Game.getInstance().popStack();
+			clear();
     	}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
     		Game.getInstance().popStack();
+    		clear();
     	}else if(key.containsAndRemove(KeyCode.NUM9)){
     		Game.getInstance().pm.sysProps();
 			Game.getInstance().openShop();
+			clear();
 		}
 	}
-
+	private void clear(){
+		Resources.releaseImage(Resources.IMG_ID_RANKING);
+		Resources.releaseImage(Resources.IMG_ID_BOTBAR);
+	}
 }

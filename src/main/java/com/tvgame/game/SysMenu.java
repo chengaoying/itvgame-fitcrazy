@@ -37,6 +37,11 @@ public class SysMenu implements UiObject {
 		
 	}
 
+	private void clear(){
+		Resources.releaseImage(Resources.IMG_ID_BUTTON_01);
+		Resources.releaseImage(Resources.IMG_ID_MAINMENU_ITEM_HAND);
+	}
+	
 	public void update(KeyState key) {
 		if(key.containsAndRemove(KeyCode.OK)){
 			Game.getInstance().popStack();
@@ -51,6 +56,7 @@ public class SysMenu implements UiObject {
 				break;
 			case 2:
 				Game.getInstance().openAchichment();
+				clear();
 				break;
 			case 3://返回主菜单的时保存且提交游戏分数
 				//保存游戏 
@@ -66,6 +72,7 @@ public class SysMenu implements UiObject {
 				record.saveAttainment();  //保存成就
 				Game.getInstance().pm.sysProps();
 				Game.getInstance().backMainMenu();
+				clear();
 				break;
 			}
 		}else if(key.containsAndRemove(KeyCode.UP)){
@@ -74,6 +81,7 @@ public class SysMenu implements UiObject {
 			selectIndex = selectIndex<game_pause_str.length-1?++selectIndex:0;
 		}else if (key.containsAndRemove(KeyCode.NUM0)|| key.containsAndRemove(KeyCode.BACK)) {
 			Game.getInstance().popStack();
+			clear();
 		}else if(key.containsAndRemove(KeyCode.NUM9)){
 			Game.getInstance().openShop();
 		}

@@ -272,6 +272,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 					isNewGame = false;
 					setState(ST_GAME_LOADING, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
 					selectIndex = 0;
+					clearMenu();
 				}
 				break;
 			case 1:			//开始游戏
@@ -283,6 +284,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				pm.queryProps();
 				setState(ST_GAME_LOADING, STFLAG_INIT_NEXT | STFLAG_RLES_THIS, null);
 				selectIndex = 0;
+				clearMenu();
 				break;
 			case 2:
 				// 排行榜信息
@@ -290,6 +292,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				ServiceWrapper sw = getServiceWrapper();
 				rankList = sw.queryRankingList(0, 10);
 				openRank();
+				clearMenu();
 				break;
 			case 3:
 				openHelp();
@@ -302,6 +305,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 		    	SaveGameRecord gr = new SaveGameRecord(Game.getInstance());
 				gr.loadAttainment();
 				openAchichment();
+				clearMenu();
 				break;
 			case 5:
 				isExit = true;
@@ -309,13 +313,22 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 				break;
 			}
 		} else if (keyState.containsAndRemove(KeyCode.NUM0)) {
-			isExit = true;
-			exit = true;
+			//isExit = true;
+			//exit = true;
 		} else if (keyState.containsAndRemove(KeyCode.NUM9)) {
 			//Game.getInstance().pm.sysProps();
 			Game.getInstance().openShop();
+			clearMenu();
 		}
 	}
+	
+	public static void clearMenu(){
+		Resources.releaseImage(Resources.IMG_ID_MENU_BG);
+		Resources.releaseImage(Resources.IMG_ID_MAINMENU_ITEM_BUTTON);
+		Resources.releaseImage(Resources.IMG_ID_MAINMENU_ITEM_TEXT);
+		Resources.releaseImage(Resources.IMG_ID_MAINMENU_ITEM_HAND);
+	}
+	
     /***
      * 绘制框背景
      * @param g

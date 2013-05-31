@@ -136,6 +136,7 @@ public class Achichment implements UiObject {
 	public void update(KeyState key) {
 		if (key.containsAndRemove(KeyCode.OK)) {
 			Game.getInstance().popStack();
+			clear();
 		}else if(key.containsAndRemove(KeyCode.LEFT)){
 			isRight = false;
 			if(pageIndex > 0){
@@ -148,8 +149,24 @@ public class Achichment implements UiObject {
 			}
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
 			Game.getInstance().popStack();
+			clear();
 		}else if(key.containsAndRemove(KeyCode.NUM9)){
 			Game.getInstance().openShop();
+			clear();
 		}
+	}
+	
+	private void clear(){
+		Resources.releaseImage(Resources.IMG_ID_ACHI_BG);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_INFO_BG);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_BRONZE_MEDAL);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_SILVER_MEDAL);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_GOLD_MEDAL);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_LEFT_1);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_LEFT_2);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_RIGHT_1);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_RIGHT_2);
+		Resources.releaseImage(Resources.IMG_ID_ACHI_MAIN_TITLE);
+		Resources.releaseImage(Resources.IMG_ID_BOTBAR);
 	}
 }

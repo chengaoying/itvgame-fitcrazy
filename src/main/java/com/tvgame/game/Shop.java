@@ -91,6 +91,11 @@ public class Shop implements UiObject{
 		}
 	} 
 
+	private void clear(){
+		Resources.releaseImage(Resources.IMG_ID_SHOP);
+		Resources.releaseImage(Resources.IMG_ID_BOTBAR);
+	}
+	
 	public void update(KeyState key) {
 		if(key.containsAndRemove(KeyCode.UP)){
 			if(x_index != 2){
@@ -129,6 +134,7 @@ public class Shop implements UiObject{
 		}else if(key.containsAndRemove(KeyCode.NUM0 | KeyCode.BACK)){
 			Game.getInstance().pm.sysProps();
 			Game.popStack();
+			clear();
 		}
 		index = getIndex();
 	}
