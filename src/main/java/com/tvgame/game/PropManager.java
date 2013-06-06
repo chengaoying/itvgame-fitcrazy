@@ -20,7 +20,7 @@ public class PropManager{
 	/*查询玩家道具*/
 	public void queryProps(){
 		initProps(props);
-		ServiceWrapper sw = engine.getServiceWrapper(false);
+		ServiceWrapper sw = engine.getServiceWrapper();
 		OwnProp[] pps = sw.queryOwnPropList();
 		if(pps==null){
 			return;
@@ -44,7 +44,7 @@ public class PropManager{
 	}
 
 	private void initProps(PlayerProp[] props2) {
-		ServiceWrapper sw = engine.getServiceWrapper(false);
+		ServiceWrapper sw = engine.getServiceWrapper();
 		Prop[] ps = sw.queryGamePropList();
 		if(ps == null){
 			props = new PlayerProp[8];
@@ -146,7 +146,7 @@ public class PropManager{
 	public boolean buyProp(int propId, int propCount){
 		PlayerProp pp = getPropById(propId);
 		//if (engine.getEngineService().getBalance() >= pp.getPrice()) {
-			ServiceWrapper sw = engine.getServiceWrapper(true);
+			ServiceWrapper sw = engine.getServiceWrapper();
 			//sw.purchaseProp(propId, 1, "购买"+pp.getName());
 			sw.expendTelcomsh(propId, "购买"+pp.getName());
 			PopupText pt = UIResource.getInstance().buildDefaultPopupText();
@@ -182,7 +182,7 @@ public class PropManager{
 			ids[i] = props[i].getPropId();
 			counts[i] = props[i].getNums();
 		}
-		ServiceWrapper sw = engine.getServiceWrapper(false);
+		ServiceWrapper sw = engine.getServiceWrapper();
 		sw.synProps(ids, counts);
 		System.out.println("同步道具:"+sw.isServiceSuccessful());
 		for(int i=0;i<props.length;i++){
