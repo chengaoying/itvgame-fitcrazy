@@ -47,10 +47,10 @@ public class Shop implements UiObject{
 		if(index < 9){
 			String des = Game.pm.props[index].getDesc();
 			String price = String.valueOf(Game.pm.props[index].getPrice()); 
-			String str = des+"，价格："+price+"TV币或"+Game.getInstance().getEngineService().getExpendAmountUnit();
+			String str = des+"，价格："+price+Game.getInstance().getEngineService().getExpendAmountUnit();
 			TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 		}
-		g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+"数:"
+		g.drawString(/*Game.getInstance().getEngineService().getExpendAmountUnit()+*/"游戏币:"
 				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);
 		Game.getInstance().setDefaultFont(g);
 	}
