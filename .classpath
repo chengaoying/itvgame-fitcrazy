@@ -3,7 +3,7 @@
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry sourcepath="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.2/source/bf9871d7ee759b40de649e9cd38b3b56a8b1529d/itvgame-common-1.4.9.2-sources.jar" kind="lib" path="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.2/jar/e919b8e83c39e36d4c58ee325a05906f0bbf0c2c/itvgame-common-1.4.9.2.jar" exported="true"/>
+	<classpathentry sourcepath="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.3/source/7e67913f82327cfb28db9f63ef658c0d087caa0e/itvgame-common-1.4.9.3-sources.jar" kind="lib" path="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.3/jar/f57f6a9ed19540e753c1d32a1e23a4adc0f5d8b1/itvgame-common-1.4.9.3.jar" exported="true"/>
 	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/cldcapi11.jar" exported="true"/>
 	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/midpapi20.jar" exported="true"/>
 </classpath>
