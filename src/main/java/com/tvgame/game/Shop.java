@@ -7,6 +7,7 @@ import cn.ohyeah.stb.key.KeyCode;
 import cn.ohyeah.stb.key.KeyState;
 import cn.ohyeah.stb.res.UIResource;
 import cn.ohyeah.stb.ui.PopupConfirm;
+import cn.ohyeah.stb.ui.PopupText;
 
 import com.tvgame.actor.Resources;
 import com.tvgame.constant.Const;
@@ -46,7 +47,7 @@ public class Shop implements UiObject{
 		if(index < 9){
 			String des = Game.pm.props[index].getDesc();
 			String price = String.valueOf(Game.pm.props[index].getPrice()); 
-			String str = des+"，价格："+price+Game.getInstance().getEngineService().getExpendAmountUnit();
+			String str = des+"，价格："+price+"TV币或"+Game.getInstance().getEngineService().getExpendAmountUnit();
 			TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 		}
 		g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+"数:"
@@ -118,8 +119,11 @@ public class Shop implements UiObject{
 		}else if(key.containsAndRemove(KeyCode.OK)){
 			index = getIndex();
 			if(index == 9){
-				Recharge recharge = new Recharge(Game.getInstance());
-				recharge.recharge();
+				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
+				p.processShop();
+				PopupText pt = UIResource.getInstance().buildDefaultPopupText();
+				pt.setText("赞不支持充值,请到大厅充值!");
+				pt.popup();
 			}else{
 				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
 				p.processShop();

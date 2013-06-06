@@ -37,7 +37,7 @@ public class SaveGameRecord {
 		byte record[];
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		DataOutputStream dout = new DataOutputStream(bout);
-		ServiceWrapper sw = game.getServiceWrapper();
+		ServiceWrapper sw = game.getServiceWrapper(false);
 		try {
 			
 			//成就数据
@@ -87,7 +87,7 @@ public class SaveGameRecord {
 	}
 	
 	public boolean loadAttainment(){
-		ServiceWrapper sw = game.getServiceWrapper();
+		ServiceWrapper sw = game.getServiceWrapper(false);
 		GameAttainment ga = sw.readAttainment(attainmentId);
 		if(!sw.isServiceSuccessful() || ga==null){
 			return false;
@@ -136,7 +136,7 @@ public class SaveGameRecord {
 		byte record[];
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		DataOutputStream dout = new DataOutputStream(bout);
-		ServiceWrapper sw = game.getServiceWrapper();
+		ServiceWrapper sw = game.getServiceWrapper(false);
 		try {
 			UserData.buildSavaData(dout);
 			record = bout.toByteArray();
@@ -167,7 +167,7 @@ public class SaveGameRecord {
 	}
 	
 	public boolean loadRecord(){
-		ServiceWrapper sw = game.getServiceWrapper();
+		ServiceWrapper sw = game.getServiceWrapper(false);
 		GameRecord gameRecord = sw.readRecord(recordId);
 		if(!sw.isServiceSuccessful() || gameRecord==null){
 			return result = false;

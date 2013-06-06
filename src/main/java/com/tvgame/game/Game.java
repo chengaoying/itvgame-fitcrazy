@@ -289,7 +289,7 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 			case 2:
 				// ≈≈––∞Ò–≈œ¢
 				// CommonMain.doMarkLoadList("10",CommonMain.MARK_TYPE_SINGLE);
-				ServiceWrapper sw = getServiceWrapper();
+				ServiceWrapper sw = getServiceWrapper(false);
 				rankList = sw.queryRankingList(0, 10);
 				openRank();
 				clearMenu();
@@ -1016,4 +1016,5 @@ public class Game extends GameCanvasEngine/*Canvas implements Runnable,CommonLis
 	public void setDefaultFont(Graphics g) {
 		setFont(20,false,g);
 	}
+
 }
