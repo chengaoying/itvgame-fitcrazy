@@ -3,7 +3,7 @@
 	<classpathentry kind="output" path="bin"/>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry sourcepath="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.4/source/d7d6eca53ec06219b8302b81152a53a2a538468d/itvgame-common-1.4.9.4-sources.jar" kind="lib" path="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.4/jar/23c6b7cdc5f3dc89e333c14c4002cdcf8261564a/itvgame-common-1.4.9.4.jar" exported="true"/>
+	<classpathentry sourcepath="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.5/source/6021a1b1e080a19ea9cf9532fb34544f8c5bacc1/itvgame-common-1.4.9.5-sources.jar" kind="lib" path="D:/repository/gradle/caches/artifacts-13/filestore/ohyeah/itvgame-common/1.4.9.5/jar/251b2da4dd684dbb31cb486b58576f4317f6aa00/itvgame-common-1.4.9.5.jar" exported="true"/>
 	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/cldcapi11.jar" exported="true"/>
 	<classpathentry kind="lib" path="D:/program/development/WTK2.5.2_01/lib/midpapi20.jar" exported="true"/>
 </classpath>

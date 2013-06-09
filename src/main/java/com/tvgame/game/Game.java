@@ -11,6 +11,7 @@ import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
 
 import cn.ohyeah.itvgame.model.GameRanking;
+import cn.ohyeah.stb.game.Configurations;
 import cn.ohyeah.stb.game.GameCanvasEngine;
 import cn.ohyeah.stb.game.ServiceWrapper;
 import cn.ohyeah.stb.key.KeyCode;
