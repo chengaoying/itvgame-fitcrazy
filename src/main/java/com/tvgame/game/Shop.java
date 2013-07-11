@@ -50,7 +50,7 @@ public class Shop implements UiObject{
 			String str = des+"£¨º€∏Ò£∫"+price+Game.getInstance().getEngineService().getExpendAmountUnit();
 			TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 		}
-		g.drawString(/*Game.getInstance().getEngineService().getExpendAmountUnit()+*/"”Œœ∑±“:"
+		g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+":"
 				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);
 		Game.getInstance().setDefaultFont(g);
 	}
