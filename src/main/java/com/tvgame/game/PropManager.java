@@ -158,7 +158,6 @@ public class PropManager{
 			else {
 			//	Game.getInstance().showTip("购买"+pp.getName()+"失败, 原因: "+sw.getServiceMessage());
 				pt.setText("购买"+pp.getName()+"失败, 原因: "+sw.getServiceMessage());
-				
 			}
 			pt.popup();
 			return sw.isServiceSuccessful();
