@@ -147,8 +147,7 @@ public class PropManager{
 		PlayerProp pp = getPropById(propId);
 		//if (engine.getEngineService().getBalance() >= pp.getPrice()) {
 			ServiceWrapper sw = engine.getServiceWrapper();
-			//sw.purchaseProp(propId, 1, "¹ºÂò"+pp.getName());
-			sw.expendTelcomsh(propId, "¹ºÂò"+pp.getName());
+			sw.expend(pp.getPrice(), propId, "¹ºÂò"+pp.getName());
 			PopupText pt = UIResource.getInstance().buildDefaultPopupText();
 			if (sw.isServiceSuccessful()) {
 				pt.setText("¹ºÂò"+pp.getName()+"³É¹¦");

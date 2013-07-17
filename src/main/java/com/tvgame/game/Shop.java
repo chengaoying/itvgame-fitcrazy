@@ -119,13 +119,13 @@ public class Shop implements UiObject{
 		}else if(key.containsAndRemove(KeyCode.OK)){
 			index = getIndex();
 			if(index == 9){
-				/*PromptConfirm p = new PromptConfirm(index, x_index, y_index);
+				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
 				p.processShop();
 				PopupText pt = UIResource.getInstance().buildDefaultPopupText();
 				pt.setText("赞不支持充值,请到大厅充值!");
-				pt.popup();*/
-				Recharge recharge = new Recharge(Game.getInstance());
-				recharge.recharge();
+				pt.popup();
+				/*Recharge recharge = new Recharge(Game.getInstance());
+				recharge.recharge();*/
 			}else{
 				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
 				p.processShop();
