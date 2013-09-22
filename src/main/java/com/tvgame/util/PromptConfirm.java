@@ -85,8 +85,8 @@ public class PromptConfirm {
 			//TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 			cn.ohyeah.stb.ui.TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 		}
-		g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+":"
-				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);
+		/*g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+":"
+				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);*/
 		Game.getInstance().setDefaultFont();
 	}
 	

@@ -50,8 +50,8 @@ public class Shop implements UiObject{
 			String str = des+"，价格："+price+Game.getInstance().getEngineService().getExpendAmountUnit();
 			TextView.showMultiLineText(g, str, 2, 413, 243, 120, 125);
 		}
-		g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+":"
-				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);
+		/*g.drawString(Game.getInstance().getEngineService().getExpendAmountUnit()+":"
+				+Game.getInstance().getEngineService().getBalance(), 412, 349, 20);*/
 		Game.getInstance().setDefaultFont(g);
 	}
 	
@@ -122,7 +122,7 @@ public class Shop implements UiObject{
 				PromptConfirm p = new PromptConfirm(index, x_index, y_index);
 				p.processShop();
 				PopupText pt = UIResource.getInstance().buildDefaultPopupText();
-				pt.setText("赞不支持充值,请到大厅充值!");
+				pt.setText("暂不支持充值,请到大厅充值!");
 				pt.popup();
 				/*Recharge recharge = new Recharge(Game.getInstance());
 				recharge.recharge();*/

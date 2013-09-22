@@ -464,13 +464,13 @@ public class Scene {
 			} 
 			// 付费道具 快捷键
 			else if (key.containsAndRemove(KeyCode.NUM1)) {
-				int nums = Game.getInstance().pm.getPropNumsById(127);
+				int nums = Game.getInstance().pm.getPropNumsById(70);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_炸弹){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_炸弹);
 						//Game.getInstance().showTip("兑换成功！");
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(127);
+						Game.getInstance().pm.reducePropNum(70);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -479,12 +479,12 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM2)) {
-				int nums = Game.getInstance().pm.getPropNumsById(128);
+				int nums = Game.getInstance().pm.getPropNumsById(71);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_魔法棒){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_魔法棒);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(128);
+						Game.getInstance().pm.reducePropNum(71);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -492,12 +492,12 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM3)) {
-				int nums = Game.getInstance().pm.getPropNumsById(129);
+				int nums = Game.getInstance().pm.getPropNumsById(72);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_火把){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_火把);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(129);
+						Game.getInstance().pm.reducePropNum(72);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -505,13 +505,13 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM4)) {
-				int nums = Game.getInstance().pm.getPropNumsById(130);
+				int nums = Game.getInstance().pm.getPropNumsById(73);
 				if (nums > 0) {
 					if(UserData.getStep()<150){
 						//UserData.addStep(150);
 						UserData.setStep(150);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(130);
+						Game.getInstance().pm.reducePropNum(73);
 					}else{
 						Game.getInstance().showTip("步数已达到上限值");
 					}
@@ -519,12 +519,12 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM5)) {
-				int nums = Game.getInstance().pm.getPropNumsById(131);
+				int nums = Game.getInstance().pm.getPropNumsById(74);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_发芽的种子){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_发芽的种子);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(131);
+						Game.getInstance().pm.reducePropNum(74);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -532,12 +532,12 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM6)) {
-				int nums = Game.getInstance().pm.getPropNumsById(132);
+				int nums = Game.getInstance().pm.getPropNumsById(75);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_菜头弟弟){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头弟弟);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(132);
+						Game.getInstance().pm.reducePropNum(75);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -545,12 +545,12 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM7)) {
-				int nums = Game.getInstance().pm.getPropNumsById(133);
+				int nums = Game.getInstance().pm.getPropNumsById(76);
 				if (nums > 0) {
 					if(curActor.getType() != Actor.TYPE_菜头勇士){
 						Game.getInstance().getScene().setCurActor(Actor.TYPE_菜头勇士);
 						ckeckSynthesisImp();
-						Game.getInstance().pm.reducePropNum(133);
+						Game.getInstance().pm.reducePropNum(76);
 					}else{
 						Game.getInstance().showTip("使用失败，右上角框中已有该道具");
 					}
@@ -558,7 +558,7 @@ public class Scene {
 					entryShop();
 				}
 			} else if (key.containsAndRemove(KeyCode.NUM8)) {
-				int nums = Game.getInstance().pm.getPropNumsById(134);
+				int nums = Game.getInstance().pm.getPropNumsById(77);
 				if (nums > 0) {
 					//nodes = nodes2;
 					if(isCanBackStep == true){
@@ -570,7 +570,7 @@ public class Scene {
 						}
 						ckeckSynthesisImp();
 						isCanBackStep = false;
-						Game.getInstance().pm.reducePropNum(134);
+						Game.getInstance().pm.reducePropNum(77);
 					}else{
 						Game.getInstance().showTip("只能后退一步");
 					}
